@@ -63,3 +63,6 @@ RSpec.configure do |config|
   # configure Factory Bot syntax
    config.include FactoryBot::Syntax::Methods
 end
+
+FactoryBot.definition_file_paths = %w(spec/factories)
+FactoryBot.find_definitions

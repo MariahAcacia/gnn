@@ -45,6 +45,9 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot'
+  # to generate factories and seed data
+  gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -65,7 +68,7 @@ group :test do
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
   # used for testing database cleaning
-    gem 'database_cleaner'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

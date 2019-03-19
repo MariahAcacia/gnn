@@ -1,0 +1,37 @@
+<div class="row"  style="font-size: 20px;">
+  <div class="col-sm-9">
+    <%= link_to 'Sign Up', new_user_path, class: 'signup-link' %> |
+    <%= link_to 'Sign-In', '#', class: 'signin-link' %>
+  </div>
+
+  <div class="col-sm-3 text-right">
+    <p>Search Bar</p>
+  </div>
+</div>
+
+<div class='row justify-content-center'>
+  <ul class='nav'>
+    <li class="nav-item">
+      <h4><%= link_to "About", "#", class: "nav-link about-link" %></h4>
+    </li>
+    <li class='nav-item'>
+      <h4><%= link_to "Text", "#", class: "nav-link text-link" %></h4>
+    </li>
+    <li class='nav-item'>
+      <h4><%= link_to "Spotlight", "#", class: "nav-link spotlight-link" %></h4>
+    </li>
+    <li class='nav-item'>
+      <h1><%=link_to 'HOME', home_path, class: "nav-link home-link", title: "Home Page"%></h1>
+    </li>
+    <li class='nav-item'>
+      <h4><%= link_to "Video","#", class: "nav-link video-link" %></h4>
+    </li>
+    <li class='nav-item'>
+      <h4><%= link_to "Do Good","#", class: "nav-link gygo-link" %></h4>
+    </li>
+    <li class='nav-item'>
+      <h4><%= link_to "Contact", "#", class: 'nav-link contact-link' %></h4>
+    </li>
+  </ul>
+</div>
+<hr>
