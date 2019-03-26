@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe 'UserRequests' do
 
   describe 'user access' do
@@ -150,6 +151,70 @@ describe 'UserRequests' do
       it 'works as normal when not logged in' do
         get home_path
         expect(response).to be_successful
+      end
+    end
+
+    describe "GET #show" do
+      before :each do
+        get user_path(user)
+      end
+      it 'does not allow access when not logged in' do
+        expect(response).to_not be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    describe "GET #edit" do
+      before :each do
+        get edit_user_path(user)
+      end
+      it 'does not allow access when not logged in' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects you to home page' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    describe "PATCH #update" do
+      let(:new_name){ "Bob" }
+      before :each do
+        put user_path(user), params: { :user => attributes_for(:user, first_name: new_name)}
+      end
+      it 'does not allow access when not logged in' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path
+      end
+    end
+
+    describe "DELETE #destroy" do
+      before :each do
+        user
+      end
+      it 'does not destroy user' do
+        expect{ delete user_path(user) }.to change(User, :count).by(0)
+      end
+      before :each do
+        delete user_path(user)
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path
       end
     end
 

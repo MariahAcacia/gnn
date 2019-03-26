@@ -71,6 +71,10 @@ describe User do
     expect(new_user.valid?).to eq(false)
   end
 
+  it 'generates auth token when created successfully' do
+    expect(user.auth_token).to_not be_nil
+  end
+
 
   describe "associations" do
     it 'responds to saved article associations'

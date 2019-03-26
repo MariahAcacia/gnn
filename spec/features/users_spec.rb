@@ -17,6 +17,7 @@ feature 'User Accounts' do
     expect{ click_button "Create User" }.to change(User, :count).by(1)
     expect(page).to have_content "Welcome, #{first_name} #{last_name}!"
     expect(page).to have_content "success! you are now signed up!"
-
   end
+
+  
 end
