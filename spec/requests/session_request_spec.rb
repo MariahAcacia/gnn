@@ -8,7 +8,7 @@ describe "SessionRequest" do
     describe "GET #login" do
       it 'works as normal' do
         get login_path
-        expect(response).to be_success
+        expect(response).to be_successful
       end
     end
 
@@ -16,13 +16,12 @@ describe "SessionRequest" do
       before :each do
         post session_path, params: { email: user.email,
                                   password: user.password,
-                     password_confirmation: user.password,
-                                first_name: user.first_name,
-                                 last_name: user.last_name }
+                     password_confirmation: user.password }
       end
 
-      it 'actually logs you in by creating session' do
-        expect(session[:user_id]).to eq(user.id)
+      it 'actually logs you in by creating a cookie' do
+        user.reload
+        expect(cookies[:auth_token]).to eq(user.auth_token)
       end
 
       it 'creates flash message' do

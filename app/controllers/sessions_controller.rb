@@ -12,13 +12,12 @@ class SessionsController < ApplicationController
         permanent_sign_in(@user)
       else
         sign_in(@user)
-      end 
-      flash[:success] = "You've signed in successfully!"
-      redirect_to root_path
+      end
+      flash[:success] = "Welcome Back!"
     else
-      flash[:error] = "Unable to sign in - see form for errors"
-      render :new
+      flash[:error] = "Unable to sign in - Please check username and password"
     end
+    redirect_to root_path
   end
 
   def destroy

@@ -1,0 +1,23 @@
+<p>
+  <%= link_to 'Sign Up', new_user_path, class: 'signup-link' %> |
+  <a class='' data-toggle="collapse" href="#signInForm" role="button" aria-expanded="true" aria-controls="signInForm">
+    Sign In
+  </a>
+</p>
+<div class="collapse" id="signInForm">
+  <div class="card card-body col-sm-12 offset-sm-1">
+    <%= form_tag session_path do %>
+        <%= label_tag :email %>
+        <%= text_field_tag :email %>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+        <%= label_tag do %>
+          Confirm Password
+          <%= password_field_tag :password_confirmation %>
+        <% end %>
+        <%= check_box_tag :remember_me %>
+        <%= label_tag :remember_me %>
+      <%= submit_tag "Sign In" %>
+    <% end %>
+  </div>
+</div>
