@@ -1,7 +1,18 @@
 <%= render template: 'shared/navbar' %>
 <h1>Welcome, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+
+<hr>
+
 <h2>Check out your recently saved articles:</h2>
 <h3>Text</h3>
 <h3>Video</h3>
 <h3>Spotlight</h3>
 <h3>Get Your Good On</h3>
+
+<hr>
+
+<h2>Personal Information</h2>
+<p>First Name: <%= current_user.first_name %> </p>
+<p>Last Name: <%= current_user.last_name %> </p>
+<p>Email: <%= current_user.email %> </p>
+<p><%= link_to "Edit Personal Information", edit_user_path(current_user) %> </p>

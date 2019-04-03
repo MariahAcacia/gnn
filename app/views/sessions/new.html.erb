@@ -1,23 +1,26 @@
-<p>
-  <%= link_to 'Sign Up', new_user_path, class: 'signup-link' %> |
-  <a class='' data-toggle="collapse" href="#signInForm" role="button" aria-expanded="true" aria-controls="signInForm">
-    Sign In
-  </a>
-</p>
-<div class="collapse" id="signInForm">
-  <div class="card card-body col-sm-12 offset-sm-1">
-    <%= form_tag session_path do %>
-        <%= label_tag :email %>
-        <%= text_field_tag :email %>
-        <%= label_tag :password %>
-        <%= password_field_tag :password %>
-        <%= label_tag do %>
-          Confirm Password
-          <%= password_field_tag :password_confirmation %>
-        <% end %>
+<div class="dropdown">
+  <%= link_to "Sign In", "#", class: "dropdown-toggle", title: '', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } %>
+  <%= form_tag(session_path, { class: "dropdown-menu p-4" }) do %>
+    <div class="form-group">
+      <%= label_tag :email %>
+      <%= text_field_tag :email, "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag :password %>
+      <%= password_field_tag :password, "", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= label_tag do %>
+        Confirm Password
+        <%= password_field_tag :password_confirmation, "", class: "form-control" %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
         <%= check_box_tag :remember_me %>
         <%= label_tag :remember_me %>
-      <%= submit_tag "Sign In" %>
-    <% end %>
-  </div>
+      </div>
+    </div>
+    <%= submit_tag "Sign In", class: "btn btn-primary" %>
+  <% end %>
 </div>

@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
+  get "about" => "static_pages#about"
+  get "contact" => "static_pages#contact"
 end

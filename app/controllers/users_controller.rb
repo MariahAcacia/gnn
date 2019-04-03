@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @edit_page = true 
   end
 
   def update

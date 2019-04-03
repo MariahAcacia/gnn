@@ -1,14 +1,16 @@
 <div class="row"  style="font-size: 20px;">
   <% unless signed_in_user? %>
 
-    <div class="col-sm-10">
-
-      <%= render template: 'sessions/new' %>
-      
+    <div class="col-sm-3">
+      <%= link_to "Sign Up", new_user_path %>
     </div>
 
-    <div class="col-sm-2 text-right">
+    <div class="col-sm-6 text-center">
       <p>Search Bar</p>
+    </div>
+
+    <div class="col-sm-3 text-right">
+      <%= render template: 'sessions/new' %>
     </div>
 
   <% else %>
@@ -19,12 +21,10 @@
 
 </div>
 
-<hr>
-
 <div class='row justify-content-center'>
   <ul class='nav'>
     <li class="nav-item">
-      <h4><%= link_to "About", "#", class: "nav-link about-link" %></h4>
+      <h4><%= link_to "About", about_path, class: "nav-link about-link" %></h4>
     </li>
     <li class='nav-item justify-content-center'>
       <h4><%= link_to "Text", "#", class: "nav-link text-link" %></h4>
@@ -42,7 +42,7 @@
       <h4><%= link_to "Do Good","#", class: "nav-link gygo-link" %></h4>
     </li>
     <li class='nav-item'>
-      <h4><%= link_to "Contact", "#", class: 'nav-link contact-link' %></h4>
+      <h4><%= link_to "Contact", contact_path, class: 'nav-link contact-link' %></h4>
     </li>
   </ul>
 </div>

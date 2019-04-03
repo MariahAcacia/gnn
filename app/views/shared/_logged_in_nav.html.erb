@@ -1,30 +1,31 @@
-<div class="col-sm-2">
-  <%= link_to 'Sign Out', logout_path %>
-</div>
+<div class="col-sm-3">
+  <div class="row">
 
-<div class="col-sm-8">
-  <p>Quick Jump to Your Saved Articles: </p>
-  <div class="row justify-content-center">
-    <ul class='nav'>
-      <li class='nav-item'>
-        <p><%= link_to 'Text', "#", class: "nav-link text-link" %></p>
-      </li>
-      <li class='nav-item'>
-        <p><%= link_to 'Spotlight', "#", class: "nav-link" %></p>
-      </li>
-      <li class='nav-item'>
-        <h3><%= link_to 'Profile', user_path(current_user), class: "nav-link justify-content-center" %></h3>
-      </li>
-      <li class='nav-item'>
-        <p><%= link_to 'Video', "#", class: "nav-link" %></p>
-      </li>
-      <li class='nav-item'>
-        <p><%= link_to 'Do Good', "#", class: "nav-link" %></p>
-      </li>
-    </ul>
+    <div class="dropdown">
+      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <%= "#{current_user.first_name} #{current_user.last_name}" %>
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %>
+        <div class="dropdown-divider"></div>
+        <h6 class="dropdown-header">Your Saved Article Indexes</h6>
+        <div class="dropdown-divider"></div>
+        <%= link_to 'Text', "#", class: "dropdown-item" %>
+        <%= link_to 'Video', "#", class: "dropdown-item" %>
+        <%= link_to 'Spotlight', "#", class: "dropdown-item" %>
+        <%= link_to 'GYGO', "#", class: "dropdown-item" %>
+        <div class="dropdown-divider"></div>
+        <%= link_to "Home", root_path, class: "dropdown-item" %>
+        <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="col-sm-2 text-right">
-  <p>Search Bar</p>
+<div class="col-sm-6 text-center">
+</div>
+
+<div class="col-sm-3 text-right">
+    <%= link_to "Cancel", user_path(current_user) if @edit_page %>
+    <%= link_to "Sign Out", logout_path, class: "logout-link" unless @edit_page %>
 </div>
