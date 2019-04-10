@@ -9,6 +9,7 @@ class User < ApplicationRecord
             presence: true,
             uniqueness: true,
             format: { with: /\w+@\w+\.{1}[a-zA-Z]{2,}/, message: "Must contain @ and ." }
+
   validates :password,
             length: { in: 7..15 },
             allow_nil: true

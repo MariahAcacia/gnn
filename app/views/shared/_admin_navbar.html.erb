@@ -3,24 +3,24 @@
 
     <div class="dropdown">
       <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= "#{current_user.first_name} #{current_user.last_name}" %>
+        <%= "#{administrator.first_name} #{administrator.last_name}" %>
       </a>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %>
-        <%= link_to "Home", root_path, class: "dropdown-item" %>
+        <h6 class="dropdown-header">Add New Articles</h6>
         <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Your Saved Article Indexes</h6>
+        <%= link_to 'Text', new_text_path, class: "dropdown-item" %>
+        <%= link_to 'Video', "#new", class: "dropdown-item" %>
+        <%= link_to 'Spotlight', "#new", class: "dropdown-item" %>
+        <%= link_to 'GYGO', "#new", class: "dropdown-item" %>
         <div class="dropdown-divider"></div>
-        <%= link_to 'Text', "#", class: "dropdown-item" %>
-        <%= link_to 'Video', "#", class: "dropdown-item" %>
-        <%= link_to 'Spotlight', "#", class: "dropdown-item" %>
-        <%= link_to 'GYGO', "#", class: "dropdown-item" %>
-        <div class="dropdown-divider"></div>
+        <%= link_to 'Analytics', '#', class: "dropdown-item" %>
         <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
       </div>
     </div>
+
   </div>
 </div>
+
 
 <div class="col-sm-6 text-center">
 </div>

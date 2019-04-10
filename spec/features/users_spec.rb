@@ -1,8 +1,12 @@
 require 'rails_helper'
-require 'factory_bot'
 
 feature 'User Accounts' do
   let(:user){ create(:user) }
+  let(:sign_in){ click_button "Sign In"
+                 fill_in "Email", with: "#{user.email}"
+                 fill_in "password", with: "password"
+                 fill_in "Confirm Password", with: "password"
+                 click_button "Sign In" }
 
   before do
     visit root_path
@@ -41,11 +45,7 @@ feature 'User Accounts' do
   end
 
   scenario 'log in as returning user' do
-    click_button "Sign In"
-    fill_in "Email", with: "#{user.email}"
-    fill_in "password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
+    sign_in
     expect(page).to have_content "Welcome Back!"
     expect(page).to have_content "Welcome to GNN, where all the news is good news!"
     expect(page).to have_content "Sign Out"
@@ -64,11 +64,7 @@ feature 'User Accounts' do
   end
 
   scenario 'logout' do
-    click_button "Sign In"
-    fill_in "Email", with: "#{user.email}"
-    fill_in "password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
+    sign_in
     expect(page).to have_content "Sign Out"
     click_on(class: 'logout-link')
     expect(page).to have_content "You've successfully logged out"
@@ -78,11 +74,7 @@ feature 'User Accounts' do
   end
 
   scenario 'edit profile info successfully' do
-    click_button "Sign In"
-    fill_in "Email", with: "#{user.email}"
-    fill_in "password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
+    sign_in
     click_link "Profile"
     click_link "Edit Personal Information"
     expect(page).to have_content "Edit your Information"
@@ -95,11 +87,7 @@ feature 'User Accounts' do
   end
 
   scenario 'edit profile info unsuccessfully' do
-    click_button "Sign In"
-    fill_in "Email", with: "#{user.email}"
-    fill_in "password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
+    sign_in
     click_link "Profile"
     click_link "Edit Personal Information"
     expect(page).to have_content "Edit your Information"
@@ -117,11 +105,7 @@ feature 'User Accounts' do
   end
 
   scenario 'check out about page and contact page' do
-    click_button "Sign In"
-    fill_in "Email", with: "#{user.email}"
-    fill_in "password", with: "password"
-    fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
+    sign_in
     expect(page).to have_content "#{user.first_name} #{user.last_name}"
     click_link "About"
     expect(page).to have_content "About GNN"

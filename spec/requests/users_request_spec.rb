@@ -48,7 +48,7 @@ describe 'UserRequests' do
       context "with valid attributes" do
         let(:new_name){ "Bob" }
         before :each do
-          put user_path(user), params: { :user => attributes_for(:user, first_name: new_name)}
+          patch user_path(user), params: { :user => attributes_for(:user, first_name: new_name)}
         end
         it 'actually updates user info' do
           user.reload

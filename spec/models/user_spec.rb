@@ -4,6 +4,7 @@ require 'factory_bot'
 describe User do
 
   let(:user){ create(:user) }
+  let(:admin){ create(:user, admin: true) }
 
   it 'is valid with with valid attributes (email, first name, last name, password, password confirmation)' do
     expect(user).to be_valid
@@ -75,12 +76,25 @@ describe User do
     expect(user.auth_token).to_not be_nil
   end
 
+  it 'by default is not an admin' do
+    expect(user.admin).to eq(false)
+  end
+
+  it 'is valid as an admin' do
+    expect(admin).to be_valid
+  end
+
+  it 'admin value true when admin' do
+    expect(admin.admin).to eq(true)
+  end
+
+
 
   describe "associations" do
-    it 'responds to saved article associations'
-    it 'responds to saved video associations'
-    it 'responds to saved spotlight associations'
-    it 'responds to saved gygo associations'
+    it "responds to 'saved' article associations"
+    it "responds to 'saved' video associations"
+    it "responds to 'saved' spotlight associations"
+    it "responds to 'saved' gygo associations"
   end
 
 end

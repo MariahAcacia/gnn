@@ -1,5 +1,13 @@
 <div class="row"  style="font-size: 20px;">
-  <% unless signed_in_user? %>
+  <% if signed_in_admin? %>
+
+    <%= render partial: 'shared/admin_navbar' %>
+
+  <% elsif signed_in_user? %>
+
+    <%= render partial: 'shared/logged_in_nav' %>
+
+  <% else %>
 
     <div class="col-sm-3">
       <%= link_to "Sign Up", new_user_path %>
@@ -13,10 +21,6 @@
       <%= render template: 'sessions/new' %>
     </div>
 
-  <% else %>
-
-    <%= render partial: 'shared/logged_in_nav' %>
-
   <% end %>
 
 </div>
@@ -27,7 +31,7 @@
       <h4><%= link_to "About", about_path, class: "nav-link about-link" %></h4>
     </li>
     <li class='nav-item justify-content-center'>
-      <h4><%= link_to "Text", "#", class: "nav-link text-link" %></h4>
+      <h4><%= link_to "Text", texts_path, class: "nav-link text-link" %></h4>
     </li>
     <li class='nav-item'>
       <h4><%= link_to "Spotlight", "#", class: "nav-link spotlight-link" %></h4>

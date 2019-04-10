@@ -64,6 +64,8 @@ group :development, :test do
   # to generate factories and seed data
   gem 'faker'
   gem 'rails-controller-testing'
+  # sending letters
+  gem 'letter_opener'
 end
 
 group :development do
@@ -75,6 +77,10 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'guard-rspec', require: false
   gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
+  gem "bullet"
+  gem "hirb"
 end
 
 group :test do
@@ -85,6 +91,12 @@ group :test do
   gem 'chromedriver-helper'
   # used for testing database cleaning
   gem 'database_cleaner'
+  gem 'launchy'
+  gem 'rails-controller-testing'
+end
+
+group :production do
+  gem 'rails_12factor'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

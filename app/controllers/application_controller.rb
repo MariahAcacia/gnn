@@ -26,10 +26,29 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def administrator
+    if current_user && current_user.admin == true
+      @administrator = current_user
+    end
+  end
+  helper_method :administrator
+
+  def signed_in_admin?
+    !!administrator
+  end
+  helper_method :signed_in_admin?
+
   def signed_in_user?
     !!current_user
   end
   helper_method :signed_in_user?
+
+  def require_admin
+    unless signed_in_admin?
+      flash[:error] = "You must be an Admin to access"
+      redirect_to root_path
+    end
+  end
 
   def require_login
     unless signed_in_user?
@@ -40,7 +59,7 @@ class ApplicationController < ActionController::Base
 
   def require_current_user
     unless params[:id] == current_user.id.to_s
-      flash[:error] = "you are not authorized to view this page"
+      flash[:error] = "You are not authorized to view this page"
       redirect_to root_path
     end
   end
