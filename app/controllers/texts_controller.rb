@@ -5,8 +5,8 @@ class TextsController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    @lastest_texts = Text.newest_four
-    @texts = Text.all.delete(@lastest_texts)
+    @latest_texts = Text.newest_four
+    @texts = Text.all - @latest_texts
   end
 
   def show

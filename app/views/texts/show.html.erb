@@ -1,2 +1,15 @@
-Show page
-<%= @text %> 
+<%= render template: 'shared/navbar' %>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <%= link_to(@text.url) do %>
+      <h1><%= @text.headline %></h1>
+      <%= @text.photo unless nil %>
+      <p><%= @text.blurb %></p>
+    <% end %> 
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2">
+    <p>This will eventually be the discussion area</p>
+  </div>
+</div>

@@ -19,16 +19,24 @@ feature 'Text Articles' do
   before do
     visit root_path
   end
+
   scenario 'add new text article' do
+    headline = Faker::RickAndMorty.quote
+    blurb = Faker::RickAndMorty.quote
     sign_in_admin
     expect(page).to have_content("Welcome Back!")
     expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
     expect(page).to have_content("Add New")
     click_on(class: 'add-new-text-btn')
     expect(page).to have_content("Add New Text Article")
-    fill_in "Headline", with: Faker::RickAndMorty.quote
-    fill_in "Blurb", with: Faker::RickAndMorty.quote
-    fill_in "url", with: "https://www.adultswim.com/videos/rick-and-morty"
+    fill_in "Headline", with: headline
+    fill_in "Blurb", with: blurb
+    fill_in class:"url", with: "https://www.adultswim.com/videos/rick-and-morty"
+    click_button class: 'create-text-btn'
+    expect(page).to have_content "Text Article Added Successfully!"
+    expect(page).to have_content headline
+    expect(page).to have_content blurb
+
   end
   scenario 'unable to add new text article'
   scenario 'update text artcile'

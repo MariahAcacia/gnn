@@ -5,6 +5,10 @@ class UsersController < ApplicationController
 
 
   def home
+    @texts = Text.newest_four
+    @videos = nil
+    @spotslights = nil
+    @gygo = nil 
   end
 
   def new
@@ -27,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @edit_page = true 
+    @edit_page = true
   end
 
   def update
