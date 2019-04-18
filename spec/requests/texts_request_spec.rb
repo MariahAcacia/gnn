@@ -192,7 +192,7 @@ describe 'TextRequests' do
           expect(flash[:error]).not_to be_nil
         end
         it 'renders edit form' do
-          expect(response.body).to match /Edit Form/
+          expect(response.body).to match /Edit Text Article/
         end
       end
     end

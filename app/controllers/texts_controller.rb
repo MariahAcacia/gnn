@@ -5,8 +5,8 @@ class TextsController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    @latest_texts = Text.newest_four
-    @texts = Text.all - @latest_texts
+    @newest_texts = Text.newest_four
+    @texts = (Text.all - @newest_texts).sort! { |a, b|  b.created_at <=> a.created_at }
   end
 
   def show

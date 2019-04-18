@@ -1,9 +1,0 @@
-<div class="col-sm-3">
-  <%= link_to(text.url) do %>
-    <p>Headline: <%= text.headline %></p>
-    <%= text.photo unless nil %>
-    <p>Blurb: <%= text.blurb %></p>
-    <%= link_to "Let's Discuss", text_path(text), class: 'btn btn-secondary btn-sm' if signed_in_user? %>
-    <%= link_to "Save for Later", "#", class: 'btn btn-secondary btn-sm' if signed_in_user? %>
-  <% end %>
-</div>

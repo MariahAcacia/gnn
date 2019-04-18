@@ -12,7 +12,7 @@ describe Text do
     end
 
     it 'is invalid with invalid attributes' do
-      new_text = build(:text, headline: '', blurb: '', website: '')
+      new_text = build(:text, headline: '', blurb: '', url: '')
       expect(new_text).not_to be_valid
     end
   end
@@ -23,8 +23,8 @@ describe Text do
       expect(new_text).not_to be_valid
     end
 
-    it 'is not valid without a website' do
-      new_text = build(:text, website: "")
+    it 'is not valid without a url' do
+      new_text = build(:text, url: "")
       expect(new_text).not_to be_valid
     end
 
@@ -43,7 +43,7 @@ describe Text do
         forth_text = create(:text)
         fifth_text = create(:text)
         texts = Text.newest_four
-        expect(texts).to eq([text,second_text,third_text,forth_text])
+        expect(texts).to eq([fifth_text, forth_text, third_text, second_text])
       end
     end
   end

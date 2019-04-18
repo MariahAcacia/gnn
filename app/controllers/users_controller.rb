@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @texts = Text.newest_four
     @videos = nil
     @spotslights = nil
-    @gygo = nil 
+    @gygo = nil
   end
 
   def new

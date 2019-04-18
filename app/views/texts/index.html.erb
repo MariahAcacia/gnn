@@ -11,14 +11,14 @@
 
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
-    <h2>Lastest</h2>
+    <h2>Latest</h2>
   </div>
 </div>
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-    <% @latest_texts.each do |text| %>
-      <%= render partial: 'text_box', locals: { text: text } %>
+    <% @newest_texts.each do |text| %>
+      <%= render partial: 'shared/text_box', locals: { text: text } %>
     <% end %>
     </div>
   </div>
@@ -33,7 +33,7 @@
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
     <% @texts.each do |text| %>
-      <%= render partial: 'text_box', locals: { text: text } %>
+      <%= render partial: 'shared/text_box', locals: { text: text } %>
     <% end %>
     </div>
   </div>
