@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resources :texts
+  resources :videos
 
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"

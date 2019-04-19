@@ -1,4 +1,5 @@
 require 'faker'
+
 FactoryBot.define do
 
   factory :user do
@@ -15,5 +16,10 @@ FactoryBot.define do
     url { "https://www.adultswim.com/videos/rick-and-morty" }
   end
 
+  factory :video do
+    headline { "#{Faker::Simpsons.quote}" }
+    blurb { "#{Faker::Simpsons.quote}" }
+    url { "http://www.simpsonsworld.com/" }
+  end
 
 end
