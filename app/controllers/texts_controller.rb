@@ -9,6 +9,10 @@ class TextsController < ApplicationController
     @texts = (Text.all - @newest_texts).sort! { |a, b|  b.created_at <=> a.created_at }
   end
 
+  def search_index
+    @texts = Text.article_search(params[:text_query])
+  end
+
   def show
   end
 

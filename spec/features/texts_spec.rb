@@ -55,7 +55,7 @@ feature 'Text Articles' do
     expect(page).to have_content "Url can't be blank"
   end
 
-  scenario 'update text artcile' do
+  scenario 'update text article' do
     text
     new_headline = Faker::Simpsons.quote
     sign_in_admin

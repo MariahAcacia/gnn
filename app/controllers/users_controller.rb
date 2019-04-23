@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def home
     @texts = Text.newest_four
-    @videos = nil
+    @videos = Video.newest_four
     @spotslights = nil
     @gygo = nil
   end

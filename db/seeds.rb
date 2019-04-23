@@ -10,6 +10,10 @@ if Text.destroy_all
   puts "destroyed all text articles"
 end
 
+if Video.destroy_all
+  puts "destroyed all video articles"
+end 
+
 MULTIPLIER  = 10
 
 MULTIPLIER.times do |x|
@@ -18,5 +22,15 @@ MULTIPLIER.times do |x|
   url = "https://www.adultswim.com/videos/rick-and-morty"
   if Text.create(headline: headline, blurb: blurb, url: url)
     puts "Text Created"
+  end
+end
+
+
+MULTIPLIER.times do |x|
+  headline = Faker::Simpsons.quote
+  blurb = Faker::Simpsons.quote
+  url = "www.simpsonsworld.com"
+  if Video.create(headline: headline, blurb: blurb, url: url)
+    puts "Video Created"
   end
 end

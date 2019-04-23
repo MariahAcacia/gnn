@@ -11,14 +11,14 @@ FactoryBot.define do
   end
 
   factory :text do
-    headline { "#{Faker::RickAndMorty.quote}" }
-    blurb { "#{Faker::RickAndMorty.quote}" }
+    headline { "#{Faker::RickAndMorty.quote}".first(200) }
+    blurb { "#{Faker::RickAndMorty.quote}".first(200) }
     url { "https://www.adultswim.com/videos/rick-and-morty" }
   end
 
   factory :video do
-    headline { "#{Faker::Simpsons.quote}" }
-    blurb { "#{Faker::Simpsons.quote}" }
+    headline { "#{Faker::Simpsons.quote}".first(200) }
+    blurb { "#{Faker::Simpsons.quote}".first(200) }
     url { "http://www.simpsonsworld.com/" }
   end
 

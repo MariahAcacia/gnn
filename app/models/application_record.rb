@@ -4,4 +4,5 @@ class ApplicationRecord < ActiveRecord::Base
   def self.newest_four
     self.order({ created_at: :desc }).limit(4)
   end
+  
 end

@@ -1,11 +1,16 @@
 class VideosController < ApplicationController
 
-  skip_before_action :require_login, only: [:index]
-  before_action :require_admin, except: [:index, :show]
+  skip_before_action :require_login, only: [:index, :search_index]
+  before_action :require_admin, except: [:index, :show, :search_index]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def index
-    @videos = Video.all
+    @newest_videos = Video.newest_four
+    @videos = (Video.all - @newest_videos).sort! { |a, b|  b.created_at <=> a.created_at }
+  end
+
+  def search_index
+    @videos = Video.article_search(params[:video_query])
   end
 
   def new
