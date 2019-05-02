@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :spotlights
   get "video/search" => "videos#search_index"
   get "text/search" => "texts#search_index"
+  get "spotlight/search" => "spotlights#search_index"
 
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"

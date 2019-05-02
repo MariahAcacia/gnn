@@ -1,0 +1,23 @@
+<%= render template: 'shared/navbar' %>
+
+<div class="row">
+  <div class="col-sm-4">
+    <h1><%= article.capitalize %> Search Index</h1>
+  </div>
+  <div class="col-sm-6">
+    <%= render 'search_form' %>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Add New", new_polymorphic_url(article), class: 'btn btn-secondary' if signed_in_admin? %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <div class="row">
+    <% articles.each do |a| %>
+      <%= render partial: "shared/#{article}_box", locals: { article: a } %>
+    <% end %>
+    </div>
+  </div>
+</div>

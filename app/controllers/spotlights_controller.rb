@@ -9,6 +9,10 @@ class SpotlightsController < ApplicationController
     @spotlights = Spotlight.all - @newest_spotlights
   end
 
+  def search_index
+    @spotlights = Spotlight.company_search(params[:spotlight_query])
+  end
+
   def new
     @spotlight = Spotlight.new
   end

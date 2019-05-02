@@ -1,5 +1,7 @@
 class Spotlight < ApplicationRecord
 
+  include Searchable
+  
   validates :blurb, :url, presence: true
   validates :company_name, presence: true, unless: ->(spotlight){spotlight.name.present?}
   validates :name, presence: true, unless: ->(spotlight){spotlight.company_name.present?}
