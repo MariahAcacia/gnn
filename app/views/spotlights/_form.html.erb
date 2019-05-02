@@ -1,0 +1,12 @@
+<%= simple_form_for spotlight do |s| %>
+  <%= s.input :company_name %>
+  <%= s.input :name %>
+  <%= s.input :url %>
+  <%= s.input :blurb %>
+  <%= s.input :twitter %>
+  <%= s.input :instagram %>
+  <%= s.input :facebook %>
+  <%= s.input :email %>
+  <%= s.input :photo %>
+  <%= s.button :submit, class: 'btn btn-secondary create-spotlight-btn' %>
+<% end %>

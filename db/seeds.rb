@@ -12,7 +12,11 @@ end
 
 if Video.destroy_all
   puts "destroyed all video articles"
-end 
+end
+
+if Spotlight.destroy_all
+  puts "destroyed all spotlight articles"
+end
 
 MULTIPLIER  = 10
 
@@ -33,4 +37,15 @@ MULTIPLIER.times do |x|
   if Video.create(headline: headline, blurb: blurb, url: url)
     puts "Video Created"
   end
+end
+
+MULTIPLIER.times do |x|
+  company_name = Faker::Company.name
+  name = Faker::RickAndMorty.character
+  blurb = Faker::RickAndMorty.quote
+  url = "https://www.adultswim.com/videos/rick-and-morty"
+  twitter = "www.twitter.com/#{company_name}"
+  if Spotlight.create(company_name: company_name, name: name, blurb: blurb, url: url, twitter: twitter)
+    puts "Spotlight Created"
+  end 
 end

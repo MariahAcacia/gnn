@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_23_210615) do
+ActiveRecord::Schema.define(version: 2019_04_28_233458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "spotlights", force: :cascade do |t|
     t.string "company_name"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
     t.string "url", null: false
     t.text "blurb", null: false
     t.string "photo_file_name"

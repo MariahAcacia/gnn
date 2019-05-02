@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :texts
   resources :videos
+  resources :spotlights
   get "video/search" => "videos#search_index"
   get "text/search" => "texts#search_index"
 
