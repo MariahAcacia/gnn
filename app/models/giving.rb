@@ -1,4 +1,4 @@
-class Spotlight < ApplicationRecord
+class Giving < ApplicationRecord
 
   include Searchable
 

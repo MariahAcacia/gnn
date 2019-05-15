@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   resources :texts
   resources :videos
   resources :spotlights
+  resources :givings
   get "video/search" => "videos#search_index"
   get "text/search" => "texts#search_index"
   get "spotlight/search" => "spotlights#search_index"
+  get "giving/search" => "givings#search_index"
 
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"

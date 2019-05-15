@@ -51,7 +51,7 @@ feature 'User Accounts' do
     expect(page).to have_content "Sign Out"
   end
 
-  scenario 'unable to log in due to wrong info' do
+  scenario 'unable to login' do
     click_button "Sign In"
     fill_in "Email", with: "blkajbdlkj"
     fill_in "password", with: "password"

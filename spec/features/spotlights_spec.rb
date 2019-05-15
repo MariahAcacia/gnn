@@ -9,12 +9,16 @@ feature 'Spotlight Articles' do
                          fill_in "Email", with: "#{admin.email}"
                          fill_in "password", with: "password"
                          fill_in "Confirm Password", with: "password"
-                         click_button "Sign In"}
+                         click_button "Sign In"
+                         expect(page).to have_content("Welcome Back!")
+                         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")}
     let(:sign_in_user){ click_button "Sign In"
                         fill_in "Email", with: "#{user.email}"
                         fill_in "password", with: "password"
                         fill_in "Confirm Password", with: "password"
-                        click_button "Sign In" }
+                        click_button "Sign In"
+                        expect(page).to have_content("Welcome Back!")
+                        expect(page).to have_content("#{user.first_name} #{user.last_name}")}
 
     let(:company_name){"New Company"}
     let(:url){"www.companyname.com"}
@@ -25,66 +29,165 @@ feature 'Spotlight Articles' do
       visit root_path
     end
 
-    scenario 'Admin add new Spotlight Article' do
-      sign_in_admin
-      expect(page).to have_content("Welcome Back!")
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_link(class: 'add-new-spotlight-btn')
-      click_on(class: 'add-new-spotlight-btn')
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_content("HOME")
-      expect(page).to have_content("Add New Spotlight")
-      fill_in "Company name", with: company_name
-      fill_in "Url", with: url
-      fill_in "Blurb", with: blurb
-      fill_in "Twitter", with: twitter
-      expect{click_on "Create Spotlight"}.to change(Spotlight, :count).by(1)
-      expect(page).to have_content("success! New Spotlight Added Successfully!")
-      expect(page).to have_content("SPOTLIGHT INDEX")
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_content("HOME")
-      expect(page).to have_content("SPOTLIGHT INDEX")
-      expect(page).to have_content(company_name)
-      expect(page).to have_content(blurb)
+    context 'Admin' do
+      before do
+        spotlight
+        sign_in_admin
+      end
+      scenario 'add new' do
+        expect(page).to have_link(class: 'add-new-spotlight-btn')
+        click_on(class: 'add-new-spotlight-btn')
+        expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
+        expect(page).to have_content("HOME")
+        expect(page).to have_content("Add New Spotlight")
+        fill_in "Company name", with: company_name
+        fill_in "Url", with: url
+        fill_in "Blurb", with: blurb
+        fill_in "Twitter", with: twitter
+        expect{click_on "Create Spotlight"}.to change(Spotlight, :count).by(1)
+        expect(page).to have_content("success! New Spotlight Added Successfully!")
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
+        expect(page).to have_content("HOME")
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).to have_content(company_name)
+        expect(page).to have_content(blurb)
+      end
+
+      scenario 'unable to add new' do
+        expect(page).to have_link(class: 'add-new-spotlight-btn')
+        click_on(class: 'add-new-spotlight-btn')
+        expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
+        expect(page).to have_content("HOME")
+        expect(page).to have_content("Add New Spotlight")
+        fill_in "Url", with: url
+        fill_in "Blurb", with: blurb
+        fill_in "Twitter", with: twitter
+        expect{click_on "Create Spotlight"}.to change(Spotlight, :count).by(0)
+        expect(page).to have_content("error! Unable to Add New Spotlight - See Form For Errors")
+        expect(page).to have_content("Add New Spotlight")
+        expect(page).to have_content("Company name can't be blank")
+        expect(page).to have_content("Name can't be blank")
+      end
+
+      scenario 'update' do
+        old_blurb = spotlight.blurb
+        new_blurb = "This is a new blurb all about that company"
+        expect(page).to have_content(old_blurb)
+        expect(page).to have_link(class: 'edit-btn')
+        click_on(class: 'edit-btn')
+        expect(page).to have_content("Edit Spotlight")
+        fill_in "Blurb", with: new_blurb
+        click_on "Update Spotlight"
+        expect(page).to have_content(new_blurb)
+        expect(page).not_to have_content(old_blurb)
+        expect(page).to have_content("SPOTLIGHT INDEX")
+      end
+
+      scenario 'unable to update' do
+        old_blurb = spotlight.blurb
+        new_blurb = "%"
+        expect(page).to have_content(old_blurb)
+        expect(page).to have_link(class: 'edit-btn')
+        click_on(class: 'edit-btn')
+        expect(page).to have_content("Edit Spotlight")
+        fill_in "Blurb", with: new_blurb
+        click_on "Update Spotlight"
+        expect(page).to have_content("error! Unable to Update Spotlight - See Form For Errors")
+        expect(page).to have_content("Blurb is too short (minimum is 10 characters)")
+        expect(page).to have_content(new_blurb)
+      end
+
+      scenario 'delete article' do
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).to have_content("Delete")
+        expect(page).to have_link(class: 'delete-btn')
+        expect{ click_link "Delete" }.to change(Spotlight, :count).by(-1)
+        expect(page).to have_content("Spotlight Deleted Successfully")
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).not_to have_content(spotlight.blurb)
+      end
     end
 
-    scenario 'Admin unable to add new spotlight with invalid inputs' do
-      sign_in_admin
-      expect(page).to have_content("Welcome Back!")
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_link(class: 'add-new-spotlight-btn')
-      click_on(class: 'add-new-spotlight-btn')
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_content("HOME")
-      expect(page).to have_content("Add New Spotlight")
-      fill_in "Url", with: url
-      fill_in "Blurb", with: blurb
-      fill_in "Twitter", with: twitter
-      expect{click_on "Create Spotlight"}.to change(Spotlight, :count).by(0)
-      expect(page).to have_content("error! Unable to Add New Spotlight - See Form For Errors")
-      expect(page).to have_content("Add New Spotlight")
-      expect(page).to have_content("Company name can't be blank")
-      expect(page).to have_content("Name can't be blank")
+    context 'User' do
+      before :each do
+        spotlight
+        sign_in_user
+        expect(page).to have_content(spotlight.blurb)
+      end
+      scenario 'No option to add new' do
+        expect(page).not_to have_link(class: 'add-new-spotlight-btn')
+        click_link(class: "spotlights-link")
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).not_to have_link(class: 'add-new-spotlight-btn')
+      end
+
+      scenario 'No option to update' do
+        expect(page).not_to have_link(class: 'edit-btn')
+        click_link(class: "spotlights-link")
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).not_to have_link(class: 'edit-btn')
+      end
+
+      scenario 'No option to delete' do
+        expect(page).not_to have_link(class: "delete-btn")
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).not_to have_link(class: "delete-btn")
+      end
+
+      scenario 'can see show/discussion page' do
+        expect(page).to have_link(class: 'discuss-btn')
+        click_link(class: 'discuss-btn')
+        expect(page).to have_content("Spotlight Page")
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).to have_content("Let's Discuss")
+      end
     end
 
-    scenario 'Admin update spotlight article' do
-      spotlight
-      sign_in_admin
-      expect(page).to have_content("Welcome Back!")
-      expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-      expect(page).to have_content(spotlight.company_name)
-      expect(page).to have_link(class: 'edit-btn')
-      click_on(class: 'edit-btn')
-      expect(page).to have_content("Edit Spotlight")
-    end
-    scenario 'Admin unable to update spotlight article'
-    scenario 'Admin delete article'
-    scenario 'User should not have option to add new spotlight'
-    scenario 'User should not have option to update spotlight'
-    scenario 'User should not have option to delete spotlight'
-    scenario 'Non-user should not have option to add new spotlight'
-    scenario 'Non-user should not have option to update spotlight'
-    scenario 'Non-user should not have option to delete spotlight'
+    context 'non-user' do
+      scenario 'no option to edit' do
+        spotlights = create_list(:spotlight, 3)
+        visit root_path
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'edit-btn')
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'edit-btn')
+      end
 
+      scenario 'no option to save' do
+        spotlights = create_list(:spotlight, 3)
+        visit root_path
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'save-btn')
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'save-btn')
+      end
+
+      scenario 'no option to delete' do
+        spotlights = create_list(:spotlight, 3)
+        visit root_path
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'delete-btn')
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'delete-btn')
+      end
+
+      scenario 'no option to create new' do
+        spotlights = create_list(:spotlight, 3)
+        visit root_path
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'add-new-spotlight-btn')
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content(spotlights.first.blurb)
+        expect(page).not_to have_link(class: 'add-new-spotlight-btn')
+      end
+    end
 
 end
