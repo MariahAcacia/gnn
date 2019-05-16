@@ -66,14 +66,14 @@
       <h1>Get Your Good On</h1>
     </div>
     <div class="col-sm-2">
-      <%= link_to "Add New", new_giving_path, class: 'btn btn-secondary add-new-gygo-btn' if signed_in_admin? %>
+      <%= link_to "Add New", new_giving_path, class: 'btn btn-secondary add-new-giving-btn' if signed_in_admin? %>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
       <div class='row'>
         <% @givings.each do |company| %>
-          <%= render partial: 'shared/spotlight_box', locals: { article: company } %>
+          <%= render partial: 'shared/giving_box', locals: { article: company } %>
         <% end %>
       </div>
     </div>
