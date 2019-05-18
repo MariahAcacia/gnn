@@ -1,7 +1,7 @@
 class SpotlightsController < ApplicationController
 
   skip_before_action :require_login, only: [:index, :search_index]
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, except: [:index, :search_index, :show]
   before_action :set_spotlight, only: [:show, :edit, :update, :destroy]
 
   def index

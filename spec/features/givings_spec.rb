@@ -199,6 +199,15 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'delete-btn')
     end
+    scenario 'searching for companies' do
+      click_link(class: 'gygos-link')
+      expect(page).to have_button("Search")
+      fill_in "Search Companies", with: company.company_name
+      click_on("Search")
+      expect(page).to have_content(company.company_name)
+      expect(page).to have_content("Search Index")
+      expect(page).to have_content(company.company_name)
+    end
   end
 
 end

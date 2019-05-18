@@ -20,7 +20,7 @@ describe Giving do
       it 'url' do
         new_co = build(:giving, url: nil)
         expect(new_co).not_to be_valid
-        new_co = build(:giving, url: "not nil")
+        new_co = build(:giving, url: "www.notnil.com")
         expect(new_co).to be_valid
       end
       it 'blurb' do

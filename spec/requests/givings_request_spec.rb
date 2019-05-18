@@ -76,6 +76,7 @@ describe 'GivingRequests' do
     end
     describe 'PATCH #update' do
       before :each do
+        company
         patch giving_path(company), params: { giving: attributes_for(:giving, company_name: new_co_name) }
       end
       context 'successful' do

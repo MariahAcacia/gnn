@@ -1,8 +1,8 @@
 class TextsController < ApplicationController
 
-  before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_admin, except: [:index, :search_index, :show]
   before_action :set_text, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :search_index]
 
   def index
     @newest_texts = Text.newest_four

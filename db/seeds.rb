@@ -22,6 +22,10 @@ if User.destroy_all
   puts 'destroyed all users'
 end
 
+if Giving.destroy_all
+  puts 'destroyed all Giving Companies'
+end
+
 MULTIPLIER  = 10
 
 MULTIPLIER.times do |x|
@@ -74,4 +78,15 @@ if User.create( email: 'mariah.acacia@gmail.com',
                 password: '8Admin74B',
                 password_confirmation: '8Admin74B')
     puts 'Admin Created'
+  end
+
+MULTIPLIER.times do |x|
+  company_name = Faker::Company.name
+  name = Faker::TvShows::Simpsons.character
+  blurb = Faker::TvShows::Simpsons.quote
+  url = "https:://www.simpsonsworld.com"
+  instagram = "www.instagram.com/#{company_name}"
+  if Giving.create(company_name: company_name, name: name, blurb: blurb, url: url, instagram: instagram)
+    puts "Giving Created"
   end 
+end

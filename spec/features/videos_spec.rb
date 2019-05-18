@@ -109,7 +109,7 @@ feature 'Video Articles' do
       scenario 'no option to add new' do
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'add-new-video-btn'
-        click_link class: "video-index-link"
+        click_link class: "videos-link"
         expect(page).to have_content("VIDEO INDEX")
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'add-new-video-btn'
@@ -118,7 +118,7 @@ feature 'Video Articles' do
       scenario 'no option to delete' do
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'delete-btn'
-        click_link class: 'video-index-link'
+        click_link class: 'videos-link'
         expect(page).to have_content(@videos.first.blurb)
         expect(page).to have_content("VIDEO INDEX")
         expect(page).not_to have_link class: 'delete-btn'
@@ -127,7 +127,7 @@ feature 'Video Articles' do
       scenario 'no option to edit' do
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'edit-btn'
-        click_link class: 'video-index-link'
+        click_link class: 'videos-link'
         expect(page).to have_content("VIDEO INDEX")
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'edit-btn'
@@ -143,7 +143,7 @@ feature 'Video Articles' do
 
       scenario 'no option to edit' do
         expect(page).not_to have_link class: 'edit-btn'
-        click_link class: 'video-index-link'
+        click_link class: 'videos-link'
         expect(page).to have_content("VIDEO INDEX")
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'edit-btn'
@@ -151,7 +151,7 @@ feature 'Video Articles' do
 
       scenario 'no option to delete' do
         expect(page).not_to have_link class: 'delete-btn'
-        click_link class: 'video-index-link'
+        click_link class: 'videos-link'
         expect(page).to have_content("VIDEO INDEX")
         expect(page).to have_content(@videos.first.headline)
         expect(page).to have_content(@videos.first.blurb)
@@ -159,7 +159,7 @@ feature 'Video Articles' do
       end
       scenario 'no option to save' do
         expect(page).not_to have_link(class: 'save-btn')
-        click_link(class: 'video-index-link')
+        click_link(class: 'videos-link')
         expect(page).to have_content("VIDEO INDEX")
         expect(page).to have_content(@videos.first.headline)
         expect(page).to have_content(@videos.first.blurb)
@@ -167,10 +167,19 @@ feature 'Video Articles' do
       end
       scenario 'no option to discuss' do
         expect(page).not_to have_link(class: 'discuss-btn')
-        click_link(class: 'video-index-link')
+        click_link(class: 'videos-link')
         expect(page).to have_content("VIDEO INDEX")
-        expect(page).to have_content("#{@videos.first.headline}")
+        expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link(class: 'discuss-btn')
+      end
+      scenario 'search' do
+        click_link(class: 'videos-link')
+        expect(page).to have_content("VIDEO INDEX")
+        fill_in "video_query", with: @videos.first.headline[0,5]
+        click_on("Search")
+        expect(page).to have_content("Video Search Index")
+        expect(page).to have_content(@videos.first.headline)
+        expect(page).to have_content(@videos.first.blurb)
       end
     end
 end

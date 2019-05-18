@@ -1,8 +1,8 @@
 class VideosController < ApplicationController
 
-  skip_before_action :require_login, only: [:index, :search_index]
   before_action :require_admin, except: [:index, :show, :search_index]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
+  skip_before_action :require_login, only: [:index, :search_index]
 
   def index
     @newest_videos = Video.newest_four

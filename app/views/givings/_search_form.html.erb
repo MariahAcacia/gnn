@@ -1,0 +1,4 @@
+<%= form_tag giving_search_path, method: "get", class: "search-bar" do %>
+  <%= text_field_tag :giving_query, nil, placeholder: "Search Companies" %>
+  <%= submit_tag "Search", class: 'btn btn-secondary' %>
+<% end %>

@@ -29,7 +29,7 @@ feature 'Text Articles' do
       @texts = [create(:text)]
       visit root_path
     end
-    
+
     scenario 'add new' do
       headline = Faker::TvShows::RickAndMorty.quote
       blurb = Faker::TvShows::RickAndMorty.quote
@@ -42,8 +42,8 @@ feature 'Text Articles' do
       click_button class: 'create-text-btn'
       expect(page).to have_content "Text Article Added Successfully!"
       expect(page).to have_content("TEXT INDEX")
-      expect(page).to have_content headline[0,30]
-      expect(page).to have_content blurb
+      expect(page).to have_content(headline[0,30])
+      expect(page).to have_content(blurb[0,200])
     end
 
     scenario 'unable to add new' do
@@ -86,7 +86,7 @@ feature 'Text Articles' do
 
     scenario 'delete' do
       expect(page).to have_link(class: 'delete-btn')
-      click_link(class: 'text-link')
+      click_link(class: 'texts-link')
       expect(page).to have_content("#{@texts.first.headline}")
       first(:link, class: 'delete-btn').click
       expect(page).to have_content("TEXT INDEX")
@@ -94,6 +94,20 @@ feature 'Text Articles' do
     end
 
     scenario 'unable to delete'
+  end
+
+  context 'Any User' do
+    scenario 'search' do
+      text = create(:text)
+      visit root_path
+      expect(page).to have_content(text.headline)
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      fill_in "text_query", with: text.headline[0,5]
+      click_on "Search"
+      expect(page).to have_content("Text Search Index")
+      expect(page).to have_content(text.headline)
+    end
   end
 
 end

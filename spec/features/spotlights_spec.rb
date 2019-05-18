@@ -188,6 +188,18 @@ feature 'Spotlight Articles' do
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'add-new-spotlight-btn')
       end
+
+      scenario 'search' do
+        spotlights = create_list(:spotlight, 3)
+        visit root_path
+        click_link(class: 'spotlights-link')
+        expect(page).to have_content("SPOTLIGHT INDEX")
+        fill_in "spotlight_query", with: spotlights.last.name
+        click_on("Search")
+        expect(page).to have_content("Spotlight Search Index")
+        expect(page).to have_content(spotlights.last.company_name)
+        expect(page).to have_content(spotlights.last.blurb)
+      end
     end
 
 end
