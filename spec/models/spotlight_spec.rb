@@ -55,10 +55,23 @@ describe Spotlight do
         expect(newest).to eq([five,four,three,two])
       end
     end
+
+    describe '#company_search' do
+      it 'returns spotlights that match keyword' do
+        spotlight
+        keyword = "#{spotlight.blurb[0,5]}"
+        expect(Spotlight.company_search(keyword)).to eq([spotlight])
+      end
+    end
   end
 
   describe 'user associations' do
-    it 'responds to saved by users'
+    it 'responds to saved by users' do
+      expect(spotlight).to respond_to(:user_saves)
+    end
+    it 'responds to saved records' do
+      expect(spotlight).to respond_to(:saved_records)
+    end
   end
 
 end

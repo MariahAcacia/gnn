@@ -16,6 +16,8 @@ class User < ApplicationRecord
 
   before_create :generate_token
 
+  has_many :saved_records, dependent: :destroy
+
 
   def generate_token
     begin
@@ -29,4 +31,29 @@ class User < ApplicationRecord
     save!
   end
 
+  def saved_texts
+    @texts = []
+    @saved_texts = self.saved_records.where(saveable_type: "Text")
+    @saved_texts.each do |text|
+      @texts << Text.find(text.saveable_id)
+    end
+    @texts
+  end
+
+  def saved_videos
+    @videos = []
+    @saved_videos = self.saved_records.where(saveable_type: "Video")
+    @saved_videos.each do |video|
+      @videos << Video.find(video.saveable_id)
+    end
+  end
+
+  def saved(resource)
+    @saved = []
+    @records = self.saved_records.where(saveable_type: resource)
+    @records.each do |x|
+      @saved << resource.constantize.find(x.saveable_id)
+    end
+    @saved
+  end
 end

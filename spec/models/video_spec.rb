@@ -34,12 +34,11 @@ describe Video do
       vid = build(:video)
       expect(vid).to be_valid
     end
-    it 'is valid with photo'
   end
 
   describe 'Methods' do
     describe "#newest_four" do
-      it 'saves the latest four articles in an instance variable' do
+      it 'returns latest four articles' do
         video
         second_vid
         third = create(:video)
@@ -49,10 +48,23 @@ describe Video do
         expect(videos).to eq([fifth, forth, third, second_vid])
       end
     end
+
+    describe '#article_search' do
+      it 'returns any articles that include keyword' do
+        video
+        keyword = video.blurb.partition(" ").last[0,5]
+        expect(Video.article_search(keyword)).to eq([video])
+      end
+    end
   end
 
   describe 'User Associations' do
-    it 'responds to users saved' 
+    it 'responds to users saved' do
+      expect(video).to respond_to(:user_saves)
+    end
+    it 'responds to saved records' do
+      expect(video).to respond_to(:saved_records)
+    end
   end
 
 end

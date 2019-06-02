@@ -1,0 +1,8 @@
+<% if signed_in_user? %>
+  <%= link_to "Let's Discuss", polymorphic_path(article), class: 'btn btn-secondary btn-sm discuss-btn' %>
+  <%= render partial: 'shared/save_unsave', locals: { article: article } %>
+<% end %>
+<% if signed_in_admin? %>
+  <%= link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn' %>
+  <%= link_to "Delete", polymorphic_path(article), method: "DELETE", class: 'btn btn-secondary btn-sm delete-btn', data: { confirm: "Are you sure you want to delete this article? This action cannot be undone." } %>
+<% end %>

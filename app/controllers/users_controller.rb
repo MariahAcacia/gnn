@@ -28,6 +28,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
+    @texts = @user.saved("Text")
+    @videos = @user.saved("Video")
+    @spotlights = @user.saved("Spotlight")
+    @gygos = @user.saved("Giving")
   end
 
   def edit

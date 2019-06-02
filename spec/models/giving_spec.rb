@@ -85,9 +85,22 @@ describe Giving do
         expect(Giving.newest_four).to eq([fifth, forth, third, second])
       end
     end
+    describe '#company_search' do
+      it 'returns companies that have a matching keyword' do
+        company
+        keyword = company.company_name.partition(" ")[0,5].first
+        expect(Giving.company_search(keyword)). to eq([company])
+      end
+    end
   end
 
   describe 'associations' do
+    it 'responds to user saves' do
+      expect(company).to respond_to(:user_saves)
+    end
+    it 'responds to saved records' do
+      expect(company).to respond_to(:saved_records)
+    end
   end
 
 end

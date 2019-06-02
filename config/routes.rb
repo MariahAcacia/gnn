@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   get '/home' => 'users#home'
 
   resource :session, only: [:new, :create, :destroy]
+  resource :saved_record, only: [:create, :destroy]
   resources :texts
   resources :videos
   resources :spotlights
   resources :givings
+
   get "video/search" => "videos#search_index"
   get "text/search" => "texts#search_index"
   get "spotlight/search" => "spotlights#search_index"
@@ -20,7 +22,5 @@ Rails.application.routes.draw do
   get "logout" => "sessions#destroy"
   get "about" => "static_pages#about"
   get "contact" => "static_pages#contact"
-
-
 
 end

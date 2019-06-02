@@ -40,9 +40,9 @@ feature 'Text Articles' do
       fill_in "Blurb", with: blurb[0,200]
       fill_in class:"url", with: "https://www.adultswim.com/videos/rick-and-morty"
       click_button class: 'create-text-btn'
-      expect(page).to have_content "Text Article Added Successfully!"
+      expect(page).to have_content("Text Article Added Successfully!")
       expect(page).to have_content("TEXT INDEX")
-      expect(page).to have_content(headline[0,30])
+      expect(page).to have_content(headline[0,30].strip)
       expect(page).to have_content(blurb[0,200])
     end
 
@@ -100,13 +100,13 @@ feature 'Text Articles' do
     scenario 'search' do
       text = create(:text)
       visit root_path
-      expect(page).to have_content(text.headline)
+      expect(page).to have_content(text.headline.strip)
       click_link(class: 'texts-link')
       expect(page).to have_content("TEXT INDEX")
       fill_in "text_query", with: text.headline[0,5]
       click_on "Search"
       expect(page).to have_content("Text Search Index")
-      expect(page).to have_content(text.headline)
+      expect(page).to have_content(text.headline.strip)
     end
   end
 

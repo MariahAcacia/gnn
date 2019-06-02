@@ -17,7 +17,7 @@ FactoryBot.define do
   end
 
   factory :video do
-    headline { "#{Faker::TvShows::Simpsons.quote}".first(200) }
+    headline { "#{Faker::TvShows::Simpsons.quote}".first(30).strip }
     blurb { "#{Faker::TvShows::Simpsons.quote}".first(200) }
     url { "http://www.simpsonsworld.com/" }
   end
@@ -42,6 +42,11 @@ FactoryBot.define do
     instagram { "www.instagram/#{name}" }
     facebook { "www.facebook.com/#{name}" }
     email { "#{name}@faker.com" }
+  end
+
+  factory :saved_record do
+    user
+    saveable{ create(:text) }
   end
 
 end

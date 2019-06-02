@@ -20,7 +20,10 @@ describe 'GivingRequests' do
       end
     end
     describe 'GET #search_index' do
-      it 'works as normal'
+      it 'works as normal' do
+        get giving_search_path, params: { giving_query: company.name }
+        expect(response).to be_successful
+      end
     end
     describe 'GET #new' do
       before :each do

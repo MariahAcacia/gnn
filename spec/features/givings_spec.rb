@@ -104,13 +104,21 @@ feature 'Giving Companies' do
       expect(page).to have_content("success! Giving Option DELETE Successfully (this action cannot be undone)")
       expect(page).not_to have_content(company.company_name)
     end
+
+    scenario 'create a comment' do
+    end
+
+    scenario 'delete a comment' do
+    end
   end
 
   context 'User' do
+
     before :each do
       company
       sign_in_user
     end
+
     scenario 'no option to add new' do
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'add-new-giving-btn')
@@ -118,7 +126,6 @@ feature 'Giving Companies' do
       click_link(class: 'gygos-link')
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'add-new-giving-btn')
-
     end
 
     scenario 'no option to edit' do
@@ -155,6 +162,13 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
     end
+
+    scenario 'create a comment' do
+    end
+
+    scenario 'delete a comment' do
+    end
+
   end
 
   context 'Non User' do

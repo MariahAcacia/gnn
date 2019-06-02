@@ -32,7 +32,7 @@ feature 'Video Articles' do
         sign_in_admin
       end
       scenario 'add new' do
-        headline = Faker::TvShows::Simpsons.quote
+        headline = Faker::TvShows::Simpsons.quote[0,30].strip
         blurb = Faker::TvShows::Simpsons.quote
         expect(page).to have_content("Video")
         expect(page).to have_link class: 'add-new-video-btn'

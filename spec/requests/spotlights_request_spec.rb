@@ -18,6 +18,14 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        spotlight
+        get spotlight_search_path, params: { spotlight_query: spotlight.blurb.partition(" ").first }
+        expect(response).to be_successful
+      end
+    end
+
     describe 'GET #new' do
       before :each do
         get new_spotlight_path
@@ -148,6 +156,14 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        spotlight
+        get spotlight_search_path, params: { spotlight_query: spotlight.blurb.partition(" ").first }
+        expect(response).to be_successful
+      end
+    end
+
     describe 'GET #new' do
       before :each do
         get new_spotlight_path
@@ -249,6 +265,14 @@ describe 'SpotlightRequests' do
     describe 'GET #index' do
       it 'works as normal' do
         get spotlights_path
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        spotlight
+        get spotlight_search_path, params: { spotlight_query: spotlight.blurb.partition(" ").first }
         expect(response).to be_successful
       end
     end

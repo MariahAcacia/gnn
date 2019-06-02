@@ -19,6 +19,14 @@ describe 'TextRequests' do
       end
     end
 
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        text
+        get text_search_path, params: { text_query: text.blurb.partition(" ").first }
+        expect(response).to be_successful
+      end
+    end
+
     describe "GET #show" do
       it 'works as normal' do
         get text_path(text)
@@ -119,6 +127,14 @@ describe 'TextRequests' do
     describe "GET #index" do
       it 'works as normal' do
         get texts_path
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        text
+        get text_search_path, params: { text_query: text.blurb.partition(" ").first }
         expect(response).to be_successful
       end
     end
@@ -234,6 +250,14 @@ describe 'TextRequests' do
     describe 'GET #index' do
       it 'works as normal' do
         get texts_path
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #search_index' do
+      it 'works as normal' do
+        text
+        get text_search_path, params: { text_query: text.blurb.partition(" ").first }
         expect(response).to be_successful
       end
     end
