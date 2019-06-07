@@ -11,10 +11,10 @@
         <div class="dropdown-divider"></div>
         <h6 class="dropdown-header">Your Saved Article Indexes</h6>
         <div class="dropdown-divider"></div>
-        <%= link_to 'Text', "#", class: "dropdown-item" %>
-        <%= link_to 'Video', "#", class: "dropdown-item" %>
-        <%= link_to 'Spotlight', "#", class: "dropdown-item" %>
-        <%= link_to 'GYGO', "#", class: "dropdown-item" %>
+        <%= link_to 'Text', text_saved_path, class: "dropdown-item saved-text-index" %>
+        <%= link_to 'Video', video_saved_path, class: "dropdown-item" %>
+        <%= link_to 'Spotlight', spotlight_saved_path, class: "dropdown-item" %>
+        <%= link_to 'GYGO', giving_saved_path, class: "dropdown-item saved-giving-index" %>
         <div class="dropdown-divider"></div>
         <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
       </div>

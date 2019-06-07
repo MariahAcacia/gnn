@@ -2,26 +2,26 @@
 <div class="row">
   <div class="col-sm-12">
     <div class="row">
-      <h1>Welcome, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+      <div class="col-sm-10">
+        <h1>Welcome, <%= current_user.first_name %> <%= current_user.last_name %>!</h1>
+      </div>
     </div>
     <hr>
     <div clas="row">
-      <h2>Check out your recently saved articles:</h2>
-    </div>
-    <div class="row">
       <div class="col-sm-10">
-        <div class="row">
-          <h3>Text</h3>
-        </div>
-        <div class="row">
-          <% @texts.each do |text| %>
-            <%= render partial: 'shared/text_box', locals: { article: text } %>
-          <% end %>
-        </div>
+        <h2>Check out your recently saved articles:</h2>
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Text</h2>
+        <% @texts.each do |text| %>
+          <%= render partial: 'shared/text_box', locals: { article: text } %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
         <div class="row">
           <h3>Video</h3>
         </div>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-sm-10 offset-sm-1">
         <div class="row">
           <h3>Spotlight</h3>
         </div>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-sm-10">
+      <div class="col-sm-10 offset-sm-1">
         <div class="row">
           <h3>Get Your Good On</h3>
         </div>

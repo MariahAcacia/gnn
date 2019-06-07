@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   resources :spotlights
   resources :givings
 
+  get "video/saved" => "videos#saved_index" 
+  get "text/saved" => "texts#saved_index"
+  get "spotlight/saved" => "spotlight#saved_index"
+  get "giving/saved" => "givings#saved_index"
+
   get "video/search" => "videos#search_index"
   get "text/search" => "texts#search_index"
   get "spotlight/search" => "spotlights#search_index"

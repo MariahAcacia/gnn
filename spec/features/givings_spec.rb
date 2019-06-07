@@ -161,6 +161,9 @@ feature 'Giving Companies' do
       click_link(class: 'gygos-link')
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
+      click_link(class: 'saved-giving-index')
+      expect(page).to have_content("Your Saved Giving Links")
+      expect(page).to have_content(company.company_name)
     end
 
     scenario 'create a comment' do

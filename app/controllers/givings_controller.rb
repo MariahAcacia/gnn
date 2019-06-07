@@ -53,6 +53,9 @@ class GivingsController < ApplicationController
     @givings = Giving.company_search(params[:giving_query])
   end
 
+  def saved_index
+    @givings = current_user.saved_records.where(saveable_type: "Giving")
+  end
 
   private
 

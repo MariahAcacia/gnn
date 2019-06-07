@@ -19,12 +19,6 @@ describe 'GivingRequests' do
         expect(response).to be_successful
       end
     end
-    describe 'GET #search_index' do
-      it 'works as normal' do
-        get giving_search_path, params: { giving_query: company.name }
-        expect(response).to be_successful
-      end
-    end
     describe 'GET #new' do
       before :each do
         get new_giving_path
@@ -132,14 +126,18 @@ describe 'GivingRequests' do
         expect(response).to be_successful
       end
     end
-
     describe 'GET #search_index' do
       it 'works as normal' do
-        get giving_search_path
+        get giving_search_path, params: { giving_query: company.name }
         expect(response).to be_successful
       end
     end
-
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get giving_saved_path
+        expect(response).to be_successful
+      end
+    end
   end
 
   describe 'User Access' do
@@ -230,6 +228,13 @@ describe 'GivingRequests' do
     describe 'GET #search_index' do
       it 'works as normal' do
         get giving_search_path
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get giving_saved_path
         expect(response).to be_successful
       end
     end
@@ -330,6 +335,21 @@ describe 'GivingRequests' do
       it 'works as normal' do
         get giving_search_path
         expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      before do
+        get giving_saved_path
+      end
+      it 'denies access' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path 
       end
     end
   end
