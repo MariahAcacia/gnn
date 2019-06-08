@@ -139,14 +139,6 @@ feature 'Spotlight Articles' do
         expect(page).not_to have_link(class: "delete-btn")
       end
 
-      scenario 'can see show/discussion page' do
-        expect(page).to have_link(class: 'discuss-btn')
-        click_link(class: 'discuss-btn')
-        expect(page).to have_content("Spotlight Page")
-        expect(page).to have_content(spotlight.blurb)
-        expect(page).to have_content("Let's Discuss")
-      end
-
       scenario 'saving and removing an article' do
         find('.save-btn', text: 'Save')
         click_link(class: 'save-btn')

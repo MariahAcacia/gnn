@@ -30,6 +30,7 @@ describe 'GivingRequests' do
         expect(response).to render_template :new
       end
     end
+    
     describe 'POST #create' do
       context 'successful' do
         it 'actually creates a new record' do
@@ -60,6 +61,7 @@ describe 'GivingRequests' do
         end
       end
     end
+
     describe 'GET #edit' do
       before :each do
         get edit_giving_path(company)
@@ -71,6 +73,7 @@ describe 'GivingRequests' do
         expect(response).to render_template :edit
       end
     end
+
     describe 'PATCH #update' do
       before :each do
         company
@@ -103,6 +106,7 @@ describe 'GivingRequests' do
         end
       end
     end
+
     describe 'DELETE #destroy' do
       it 'actually deletes record' do
         new_company = create(:giving)
@@ -120,18 +124,13 @@ describe 'GivingRequests' do
       end
     end
 
-    describe 'GET #show' do
-      it 'works as normal' do
-        get giving_path(company)
-        expect(response).to be_successful
-      end
-    end
     describe 'GET #search_index' do
       it 'works as normal' do
         get giving_search_path, params: { giving_query: company.name }
         expect(response).to be_successful
       end
     end
+
     describe 'GET #saved_index' do
       it 'works as normal' do
         get giving_saved_path
@@ -215,13 +214,6 @@ describe 'GivingRequests' do
       end
       it 'redirects you home page' do
         expect(response).to redirect_to root_path
-      end
-    end
-
-    describe 'GET #show' do
-      it 'works as normal' do
-        get giving_path(company)
-        expect(response).to be_successful
       end
     end
 
@@ -316,21 +308,6 @@ describe 'GivingRequests' do
       end
     end
 
-    describe 'GET #show' do
-      before :each do
-        get giving_path(company)
-      end
-      it 'denies access' do
-        expect(response).not_to be_successful
-      end
-      it 'creates flash error message' do
-        expect(flash[:error]).not_to be_nil
-      end
-      it 'redirects to home page' do
-        expect(response).to redirect_to root_path
-      end
-    end
-
     describe 'GET #search_index' do
       it 'works as normal' do
         get giving_search_path
@@ -349,9 +326,10 @@ describe 'GivingRequests' do
         expect(flash[:error]).not_to be_nil
       end
       it 'redirects to home page' do
-        expect(response).to redirect_to root_path 
+        expect(response).to redirect_to root_path
       end
     end
+
   end
 
 end

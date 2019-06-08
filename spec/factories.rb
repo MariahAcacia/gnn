@@ -35,9 +35,9 @@ FactoryBot.define do
 
   factory :giving do
     company_name { Faker::Movies::HitchhikersGuideToTheGalaxy.planet }
-    name { Faker::Movies::HitchhikersGuideToTheGalaxy.character }
+    name { Faker::Movies::PrincessBride.character }
     url { Faker::Internet.url }
-    blurb { Faker::Movies::HitchhikersGuideToTheGalaxy.quote.first(350) }
+    blurb { Faker::Movies::PrincessBride.quote.first(350) }
     twitter { "www.twitter.com/#{name}" }
     instagram { "www.instagram/#{name}" }
     facebook { "www.facebook.com/#{name}" }

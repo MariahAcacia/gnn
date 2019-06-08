@@ -183,13 +183,7 @@ feature 'Video Articles' do
         expect(page).to have_content(@videos.first.blurb)
         expect(page).not_to have_link(class: 'save-btn')
       end
-      scenario 'no option to discuss' do
-        expect(page).not_to have_link(class: 'discuss-btn')
-        click_link(class: 'videos-link')
-        expect(page).to have_content("VIDEO INDEX")
-        expect(page).to have_content(@videos.first.headline)
-        expect(page).not_to have_link(class: 'discuss-btn')
-      end
+      
       scenario 'search' do
         click_link(class: 'videos-link')
         expect(page).to have_content("VIDEO INDEX")

@@ -8,10 +8,10 @@ Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
   resource :saved_record, only: [:create, :destroy]
-  resources :texts
-  resources :videos
-  resources :spotlights
-  resources :givings
+  resources :texts, except: [:show]
+  resources :videos, except: [:show]
+  resources :spotlights, except: [:show]
+  resources :givings, except: [:show]
 
   get "video/saved" => "videos#saved_index"
   get "text/saved" => "texts#saved_index"

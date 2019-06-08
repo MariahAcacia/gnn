@@ -62,14 +62,14 @@ feature 'Text Articles' do
 
     scenario 'update' do
       visit root_path
-      new_headline = Faker::TvShows::Simpsons.quote
+      new_headline = Faker::TvShows::Simpsons.quote[0,30]
       expect(page).to have_link(class: 'edit-btn')
       click_on class: 'edit-btn'
       expect(page).to have_content("Edit Text Article")
-      fill_in "Headline", with: new_headline[0,30]
+      fill_in "Headline", with: new_headline
       click_on "Update Text"
       expect(page).to have_content("TEXT INDEX")
-      expect(page).to have_content new_headline[0,30]
+      expect(page).to have_content new_headline
     end
 
     scenario 'unable to update' do
@@ -154,14 +154,6 @@ feature 'Text Articles' do
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(text.headline)
       expect(page).not_to have_link(class: 'save-btn')
-    end
-
-    scenario 'no option to discuss' do
-      expect(page).not_to have_link(class: 'discuss-btn')
-      click_link(class: 'texts-link')
-      expect(page).to have_content("TEXT INDEX")
-      expect(page).to have_content(text.headline)
-      expect(page).not_to have_link(class: 'discuss-btn')
     end
 
     scenario 'no option to delete' do

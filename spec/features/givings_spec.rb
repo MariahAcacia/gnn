@@ -105,11 +105,6 @@ feature 'Giving Companies' do
       expect(page).not_to have_content(company.company_name)
     end
 
-    scenario 'create a comment' do
-    end
-
-    scenario 'delete a comment' do
-    end
   end
 
   context 'User' do
@@ -146,15 +141,6 @@ feature 'Giving Companies' do
       expect(page).not_to have_link(class: 'delete-btn')
     end
 
-    scenario 'discuss article' do
-      expect(page).to have_content(company.company_name)
-      expect(page).to have_link(class: 'discuss-btn')
-      click_link(class: 'discuss-btn')
-      expect(page).to have_content("Giving Page")
-      expect(page).to have_content(company.company_name)
-      expect(page).to have_content("Let's Discuss")
-    end
-
     scenario 'save and remove article' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
@@ -180,12 +166,6 @@ feature 'Giving Companies' do
       expect(page).to have_content("Save")
     end
 
-    scenario 'create a comment' do
-    end
-
-    scenario 'delete a comment' do
-    end
-
   end
 
   context 'Non User' do
@@ -208,13 +188,6 @@ feature 'Giving Companies' do
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'edit-btn')
-    end
-    scenario 'no option to discuss' do
-      expect(page).not_to have_link(class: 'discuss-btn')
-      click_link(class: 'gygos-link')
-      expect(page).to have_content("GIVING INDEX")
-      expect(page).to have_content(company.company_name)
-      expect(page).not_to have_link(class: 'discuss-btn')
     end
     scenario 'no option to save' do
       expect(page).not_to have_link(class: 'save-btn')

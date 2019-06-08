@@ -67,13 +67,6 @@ describe 'VideoRequests' do
       end
     end
 
-    describe 'GET #show' do
-      it 'works as normal' do
-        get video_path(video)
-        expect(response).to be_successful
-      end
-    end
-
     describe 'GET #edit' do
       before :each do
         get edit_video_path(video)
@@ -128,6 +121,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to root_path
       end
     end
+
   end
 
 
@@ -201,13 +195,6 @@ describe 'VideoRequests' do
       end
     end
 
-    describe 'GET #show' do
-      it 'works as normal' do
-        get video_path(video)
-        expect(response).to be_successful
-      end
-    end
-
     describe 'GET #edit' do
       it 'works as normal' do
         get edit_video_path(video)
@@ -265,6 +252,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to videos_path
       end
     end
+
   end
 
 
@@ -332,20 +320,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to root_path
       end
     end
-    describe 'GET #show' do
-      before :each do
-        get video_path(video)
-      end
-      it 'restricts access' do
-        expect(response).not_to be_successful
-      end
-      it 'creates flash message' do
-        expect(flash[:error]).not_to be_nil
-      end
-      it 'redirects to home page' do
-        expect(response).to redirect_to root_path
-      end
-    end
+
     describe 'GET #edit' do
       before :each do
         get edit_video_path(video)
@@ -360,6 +335,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to root_path
       end
     end
+
     describe 'PATCH #update' do
       let(:blurb){ "New Blurb yo yo"}
       before :each do
@@ -378,6 +354,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to root_path
       end
     end
+
     describe 'DELETE #destroy' do
       it 'does not delete video record' do
         video
@@ -396,6 +373,7 @@ describe 'VideoRequests' do
         expect(response).to redirect_to root_path
       end
     end
+    
   end
 
 end

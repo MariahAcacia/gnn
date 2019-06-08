@@ -76,13 +76,6 @@ describe 'SpotlightRequests' do
       end
     end
 
-    describe 'GET #show' do
-      it 'works as normal' do
-        get spotlight_path(spotlight)
-        expect(response).to be_successful
-      end
-    end
-
     describe 'GET #edit' do
       before :each do
         get edit_spotlight_path(spotlight)
@@ -150,6 +143,7 @@ describe 'SpotlightRequests' do
   end
 
   describe 'User Access' do
+
     let(:user){ create(:user) }
 
     before :each do
@@ -208,13 +202,6 @@ describe 'SpotlightRequests' do
       end
       it 'creates flash message' do
         expect(flash[:error]).to match(/^You must be an Admin to access/)
-      end
-    end
-
-    describe 'GET #show' do
-      it 'works as normal' do
-        get spotlight_path(spotlight)
-        expect(response).to be_successful
       end
     end
 
@@ -302,7 +289,7 @@ describe 'SpotlightRequests' do
         expect(flash[:error]).not_to be_nil
       end
       it 'redirects to home page' do
-        expect(response).to redirect_to root_path 
+        expect(response).to redirect_to root_path
       end
     end
 
@@ -336,13 +323,6 @@ describe 'SpotlightRequests' do
       end
       it 'creates flash message' do
         expect(flash[:error]).to match(/Please sign in to access!/)
-      end
-    end
-
-    describe 'GET #show' do
-      it 'restricts access' do
-        get spotlight_path(spotlight)
-        expect(response).not_to be_successful
       end
     end
 

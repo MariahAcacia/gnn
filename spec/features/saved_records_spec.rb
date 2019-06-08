@@ -20,12 +20,6 @@ feature 'Saved Records' do
                          expect(page).to have_content("Welcome Back!")
                          expect(page).to have_content("#{admin.first_name} #{admin.last_name}")}
 
-    scenario 'save an article for later' do
-
-    end
-
-    scenario 'unsave an article' do
-    end
 
   end
 
@@ -41,8 +35,8 @@ feature 'Saved Records' do
                         expect(page).to have_content("Welcome Back!")
                         expect(page).to have_content("#{user.first_name} #{user.last_name}")}
 
-    scenario 'save an article for later' do
-      text
+    scenario 'save/unsave article' do
+      @texts
       sign_in_user
       expect(page).to have_link(class: 'save-btn')
       expect{ within(class: 'text-area') do
@@ -51,16 +45,37 @@ feature 'Saved Records' do
             }.to change(SavedRecord, :count).by(1)
       expect(page).to have_content("Remove")
       click_on("Profile")
-      expect(page).to have_content(text)
+      expect(page).to have_content(@texts.first.headline)
       expect(page).to have_content("Remove")
+      expect{ click_link(class: 'save-btn') }.to change(SavedRecord, :count).by(-1)
+      expect(page).not_to have_content(@texts.first.blurb)
+      click_on("Home")
+      expect(page).to have_content(@texts.first.headline)
+      expect{ within(class: 'text-area') do
+                find('.save-btn', text: 'Save')
+              end
+            }
     end
-    scenario 'unsave an article' do
-    end
+
   end
 
   context 'Non User' do
-    scenario 'has no option to save an article'
-    scenario 'has no option to unsave article'
+    scenario 'has no option to save an article' do
+      expect(page).to have_content(@texts.first.headline)
+      expect(page).to have_content(@spotlight.first.company_name)
+      expect(page).not_to have_link(class: 'save-btn')
+      expect(page).not_to have_content('Save')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(@texts.first.headline)
+      expect(page).not_to have_content("Save")
+      expect(page).not_to have_link('save-btn')
+      click_on(class: 'spotlights-link')
+      expect(page).to have_content("SPOTLIGHT INDEX")
+      expect(page).to have_content(@spotlight.first.company_name)
+      expect(page).not_to have_content("Save")
+      expect(page).not_to have_link(class: 'save-btn')
+    end
   end
 
 end

@@ -34,13 +34,6 @@ describe 'TextRequests' do
       end
     end
 
-    describe "GET #show" do
-      it 'works as normal' do
-        get text_path(text)
-        expect(response).to be_successful
-      end
-    end
-
     describe "GET #new" do
       before :each do
         get new_text_path
@@ -125,6 +118,7 @@ describe 'TextRequests' do
   end
 
   describe 'Admin Access' do
+
     let(:admin){ create(:user, admin: true) }
 
     before :each do
@@ -149,13 +143,6 @@ describe 'TextRequests' do
     describe 'GET #saved_index' do
       it 'works as normal' do
         get text_saved_path
-        expect(response).to be_successful
-      end 
-    end
-
-    describe "GET #show" do
-      it 'works as normal' do
-        get text_path(text)
         expect(response).to be_successful
       end
     end
@@ -245,21 +232,6 @@ describe 'TextRequests' do
   end
 
   describe 'Non-User Access' do
-
-    describe 'GET #show' do
-      before :each do
-        get text_path(text)
-      end
-      it 'restricts access' do
-        expect(response).not_to be_successful
-      end
-      it 'creates flash message' do
-        expect(flash[:error]).not_to be_nil
-      end
-      it 'redirects you to home page' do
-        expect(response).to redirect_to root_path
-      end
-    end
 
     describe 'GET #index' do
       it 'works as normal' do
