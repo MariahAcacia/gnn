@@ -11,8 +11,8 @@ FactoryBot.define do
   end
 
   factory :text do
-    headline { "#{Faker::TvShows::RickAndMorty.quote}".first(30) }
-    blurb { "#{Faker::TvShows::RickAndMorty.quote}".first(200) }
+    headline { "#{Faker::TvShows::RickAndMorty.quote}".first(30).strip }
+    blurb { "#{Faker::TvShows::RickAndMorty.quote}".first(200).strip }
     url { "https://www.adultswim.com/videos/rick-and-morty" }
   end
 

@@ -132,6 +132,24 @@ feature 'Video Articles' do
         expect(page).to have_content(@videos.first.headline)
         expect(page).not_to have_link class: 'edit-btn'
       end
+
+      scenario 'save and remove video article' do
+        expect(page).to have_content(@videos.first.headline)
+        expect(page).to have_link(class: 'save-btn')
+        click_link(class: 'save-btn')
+        expect(page).to have_content(@videos.first.headline)
+        find('.save-btn', text: 'Remove')
+        click_link(class: 'saved-video-index')
+        expect(page).to have_content("Your Saved Video Links")
+        expect(page).to have_content(@videos.first.headline)
+        find('.save-btn', text: 'Remove')
+        click_link(class: 'save-btn')
+        expect(page).to have_content("Your Saved Video Links")
+        expect(page).not_to have_content(@videos.first.headline)
+        click_on("Home")
+        expect(page).to have_content(@videos.first.headline)
+        find('.save-btn', text: "Save")
+      end
     end
 
     context 'Non-users' do

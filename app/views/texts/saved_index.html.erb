@@ -1,16 +1,16 @@
-<%= render template: 'shared/navbar' %>
+<%= render template: "shared/navbar" %>
 
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
-    <h1>Your Saved Giving Links:</h1>
+    <h1>Your Saved Text Links: </h1>
   </div>
 </div>
 
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-      <% @givings.each do |x| %>
-        <%= render partial: 'shared/giving_box', locals: { article: x } %>
+      <% @texts.each do |x| %>
+        <%= render partial: "shared/text_box", locals: { article: x } %> 
       <% end %>
     </div>
   </div>

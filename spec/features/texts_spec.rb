@@ -93,10 +93,42 @@ feature 'Text Articles' do
       expect(page).not_to have_content("#{@texts.first.headline}")
     end
 
-    scenario 'unable to delete'
+  end
+
+  context 'User' do
+    before :each do
+      text
+      sign_in_user
+    end
+
+    scenario 'save and remove a text article' do
+      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content(user.first_name)
+      expect(page).to have_content(text.headline)
+      expect(page).to have_link(class: 'save-btn')
+      click_link(class: 'save-btn')
+      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content(text.headline)
+      expect(page).to have_link(class: 'save-btn')
+      click_link(class: 'saved-text-index')
+      expect(page).to have_content("Your Saved Text Links")
+      expect(page).to have_content(text.headline)
+      expect(page).to have_link(class: 'save-btn')
+      expect(page).to have_content("Remove")
+      click_link(class: 'save-btn')
+      expect(page).to have_content("Your Saved Text Links")
+      expect(page).not_to have_content(text.headline)
+      expect(page).not_to have_link(class: 'save-btn')
+      click_on("Home")
+      expect(page).to have_content(text.headline)
+      expect(page).to have_content("Save")
+      expect(page).to have_link(class: 'save-btn')
+      expect(page).to have_content("Save")
+    end
   end
 
   context 'Any User' do
+
     scenario 'search' do
       text = create(:text)
       visit root_path
@@ -107,6 +139,53 @@ feature 'Text Articles' do
       click_on "Search"
       expect(page).to have_content("Text Search Index")
       expect(page).to have_content(text.headline.strip)
+    end
+
+    before :each do
+      text
+      visit root_path
+      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content(text.headline)
+    end
+
+    scenario 'no option to save' do
+      expect(page).not_to have_link(class: 'save-btn')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(text.headline)
+      expect(page).not_to have_link(class: 'save-btn')
+    end
+
+    scenario 'no option to discuss' do
+      expect(page).not_to have_link(class: 'discuss-btn')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(text.headline)
+      expect(page).not_to have_link(class: 'discuss-btn')
+    end
+
+    scenario 'no option to delete' do
+      expect(page).not_to have_link(class: 'delete-btn')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(text.headline)
+      expect(page).not_to have_link(class: 'delete-btn')
+    end
+
+    scenario 'no option to create new' do
+      expect(page).not_to have_link(class: 'add-new-text-btn')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(text.headline)
+      expect(page).not_to have_link(class: 'add-new-text-btn')
+    end
+
+    scenario 'no option to edit' do
+      expect(page).not_to have_link(class: 'edit-btn')
+      click_link(class: 'texts-link')
+      expect(page).to have_content("TEXT INDEX")
+      expect(page).to have_content(text.headline)
+      expect(page).not_to have_link(class: 'edit-btn')
     end
   end
 

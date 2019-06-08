@@ -27,6 +27,13 @@ describe 'VideoRequests' do
       end
     end
 
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get video_saved_path
+        expect(response).to be_successful
+      end
+    end
+
     describe 'GET #new' do
       before :each do
         get new_video_path
@@ -143,6 +150,13 @@ describe 'VideoRequests' do
       it 'works as normal' do
         video
         get video_search_path, params: { video_query: video.blurb.partition(" ").first }
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get video_saved_path
         expect(response).to be_successful
       end
     end
@@ -268,6 +282,21 @@ describe 'VideoRequests' do
         video
         get video_search_path, params: { video_query: video.blurb.partition(" ").first }
         expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      before :each do
+        get video_saved_path
+      end
+      it 'denies access' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects back to home page' do
+        expect(response).to redirect_to root_path
       end
     end
 

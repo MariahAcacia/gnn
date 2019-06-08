@@ -155,15 +155,29 @@ feature 'Giving Companies' do
       expect(page).to have_content("Let's Discuss")
     end
 
-    scenario 'save article' do
+    scenario 'save and remove article' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
       click_link(class: 'gygos-link')
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
+      expect(page).to have_content("Save")
+      click_link(class: 'save-btn')
+      expect(page).to have_content(company.company_name)
+      expect(page).to have_content("Remove")
       click_link(class: 'saved-giving-index')
       expect(page).to have_content("Your Saved Giving Links")
       expect(page).to have_content(company.company_name)
+      expect(page).to have_content("Remove")
+      expect(page).to have_link(class: 'save-btn')
+      click_link(class: 'save-btn')
+      expect(page).to have_content("Your Saved Giving Links")
+      expect(page).not_to have_content(company.company_name)
+      click_on("Home")
+      expect(page).to have_content("Welcome")
+      expect(page).to have_content(company.company_name)
+      expect(page).to have_link(class: 'save-btn')
+      expect(page).to have_content("Save")
     end
 
     scenario 'create a comment' do

@@ -146,6 +146,23 @@ feature 'Spotlight Articles' do
         expect(page).to have_content(spotlight.blurb)
         expect(page).to have_content("Let's Discuss")
       end
+
+      scenario 'saving and removing an article' do
+        find('.save-btn', text: 'Save')
+        click_link(class: 'save-btn')
+        find('.save-btn', text: 'Remove')
+        expect(page).to have_link(class: 'save-btn')
+        click_link(class: 'saved-spotlight-index')
+        expect(page).to have_content("Your Saved Spotlight Links")
+        expect(page).to have_content(spotlight.blurb)
+        find('.save-btn', text: 'Remove')
+        click_link(class: 'save-btn')
+        expect(page).not_to have_content(spotlight.blurb)
+        click_on("Home")
+        expect(page).to have_content(spotlight.blurb)
+        find('.save-btn', text: 'Save')
+        expect(page).not_to have_content("Remove")
+      end
     end
 
     context 'non-user' do

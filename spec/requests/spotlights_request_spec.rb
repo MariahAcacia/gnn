@@ -26,6 +26,13 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get spotlight_saved_path
+        expect(response).to be_successful
+      end
+    end
+
     describe 'GET #new' do
       before :each do
         get new_spotlight_path
@@ -164,6 +171,13 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get spotlight_saved_path
+        expect(response).to be_successful
+      end
+    end
+
     describe 'GET #new' do
       before :each do
         get new_spotlight_path
@@ -274,6 +288,21 @@ describe 'SpotlightRequests' do
         spotlight
         get spotlight_search_path, params: { spotlight_query: spotlight.blurb.partition(" ").first }
         expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      before do
+        get spotlight_saved_path
+      end
+      it 'denies access' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path 
       end
     end
 

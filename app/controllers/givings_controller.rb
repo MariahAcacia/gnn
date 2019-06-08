@@ -54,7 +54,7 @@ class GivingsController < ApplicationController
   end
 
   def saved_index
-    @givings = current_user.saved_records.where(saveable_type: "Giving")
+    @givings = current_user.get_saved("Giving")
   end
 
   private

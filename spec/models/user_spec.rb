@@ -90,10 +90,9 @@ describe User do
 
 
   describe "associations" do
-    it "responds to 'saved' article associations"
-    it "responds to 'saved' video associations"
-    it "responds to 'saved' spotlight associations"
-    it "responds to 'saved' gygo associations"
+    it "responds to 'save records' associations" do
+      expect(user).to respond_to(:saved_records)
+    end
   end
 
 end

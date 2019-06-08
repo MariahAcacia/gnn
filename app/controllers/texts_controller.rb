@@ -1,6 +1,6 @@
 class TextsController < ApplicationController
 
-  before_action :require_admin, except: [:index, :search_index, :show]
+  before_action :require_admin, except: [:index, :search_index, :show, :saved_index]
   before_action :set_text, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :search_index]
 
@@ -11,6 +11,10 @@ class TextsController < ApplicationController
 
   def search_index
     @texts = Text.article_search(params[:text_query])
+  end
+
+  def saved_index
+    @texts = current_user.get_saved("Text")
   end
 
   def show

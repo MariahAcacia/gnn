@@ -1,7 +1,7 @@
 class SpotlightsController < ApplicationController
 
   skip_before_action :require_login, only: [:index, :search_index]
-  before_action :require_admin, except: [:index, :search_index, :show]
+  before_action :require_admin, except: [:index, :search_index, :show, :saved_index]
   before_action :set_spotlight, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -11,6 +11,10 @@ class SpotlightsController < ApplicationController
 
   def search_index
     @spotlights = Spotlight.company_search(params[:spotlight_query])
+  end
+
+  def saved_index
+    @spotlights = current_user.get_saved("Spotlight")
   end
 
   def new

@@ -1,6 +1,6 @@
 class VideosController < ApplicationController
 
-  before_action :require_admin, except: [:index, :show, :search_index]
+  before_action :require_admin, except: [:index, :show, :search_index, :saved_index]
   before_action :set_video, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :search_index]
 
@@ -11,6 +11,10 @@ class VideosController < ApplicationController
 
   def search_index
     @videos = Video.article_search(params[:video_query])
+  end
+
+  def saved_index
+    @videos = current_user.get_saved("Video")
   end
 
   def new

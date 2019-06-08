@@ -14,9 +14,7 @@ describe 'SavedRecordRequests' do
 
     describe 'POST #create' do
       it 'actually creates saved record' do
-        puts "admin saved: #{SavedRecord.count}"
         expect{ post saved_record_path, params: { save: { user_id: admin.id, saveable_id: text.id, saveable_type: 'Text'} } }.to change(SavedRecord, :count).by(1)
-        puts "admin after saved: #{SavedRecord.count}"
       end
       before :each do
         saved_record = create(:saved_record, user_id: admin.id)

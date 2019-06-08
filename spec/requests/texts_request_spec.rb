@@ -27,6 +27,13 @@ describe 'TextRequests' do
       end
     end
 
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get text_saved_path
+        expect(response).to be_successful
+      end
+    end
+
     describe "GET #show" do
       it 'works as normal' do
         get text_path(text)
@@ -137,6 +144,13 @@ describe 'TextRequests' do
         get text_search_path, params: { text_query: text.blurb.partition(" ").first }
         expect(response).to be_successful
       end
+    end
+
+    describe 'GET #saved_index' do
+      it 'works as normal' do
+        get text_saved_path
+        expect(response).to be_successful
+      end 
     end
 
     describe "GET #show" do
@@ -259,6 +273,21 @@ describe 'TextRequests' do
         text
         get text_search_path, params: { text_query: text.blurb.partition(" ").first }
         expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #saved_index' do
+      before do
+        get text_saved_path
+      end
+      it 'denies access' do
+        expect(response).not_to be_successful
+      end
+      it 'creates flash message' do
+        expect(flash[:error]).not_to be_nil
+      end
+      it 'redirects to home page' do
+        expect(response).to redirect_to root_path
       end
     end
 
