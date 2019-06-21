@@ -1,82 +1,79 @@
 <%= render template: 'shared/navbar' %>
 
-<div class="col-sm-12">
-
-  <div class="row justify-content-center">
-    <h1>Welcome to GNN, where all the news is good news!</h1>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Text", texts_path %></h1>
-    </div>
-    <div class="col-sm-2">
-      <%= link_to "Add New", new_text_path, class: 'btn btn-secondary add-new-text-btn' if signed_in_admin? %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1">
-      <div class="row text-area">
-        <% @texts.each do |text| %>
-          <%= render partial: 'shared/text_box', locals: { article: text } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Video", videos_path %></h1>
-    </div>
-    <div class="col-sm-2">
-      <%= link_to "Add New", new_video_path, class: 'btn btn-secondary add-new-video-btn' if signed_in_admin? %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1">
-      <div class='row video-area'>
-        <% @videos.each do |video| %>
-          <%= render partial: 'shared/video_box', locals: { article: video } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Spotlight", spotlights_path %></h1>
-    </div>
-    <div class="col-sm-2">
-      <%= link_to "Add New", new_spotlight_path, class: 'btn btn-secondary add-new-spotlight-btn' if signed_in_admin? %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1">
-      <div class='row spotlight-area'>
-        <% @spotlights.each do |spotlight| %>
-          <%= render partial: 'shared/spotlight_box', locals: { article: spotlight } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <div class="row">
-    <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Get Your Good On", givings_path %></h1>
-    </div>
-    <div class="col-sm-2">
-      <%= link_to "Add New", new_giving_path, class: 'btn btn-secondary add-new-giving-btn' if signed_in_admin? %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10 offset-sm-1">
-      <div class='row giving-area'>
-        <% @givings.each do |company| %>
-          <%= render partial: 'shared/giving_box', locals: { article: company } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <hr>
+<div class="row justify-content-center home-wrapper">
+  <h1>Welcome to GNN, where all the news is good news!</h1>
 </div>
+<hr>
+<div class="row">
+  <div class="col-sm-9 offset-sm-1">
+    <h1><%= link_to "Text", texts_path, class: 'texts-link' %></h1>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Add New", new_text_path, class: 'btn btn-secondary add-new-text-btn' if signed_in_admin? %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <div class="row text-area">
+      <% @texts.each do |text| %>
+        <%= render partial: 'shared/text_box', locals: { article: text } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-9 offset-sm-1">
+    <h1><%= link_to "Video", videos_path, class: 'videos-link' %></h1>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Add New", new_video_path, class: 'btn btn-secondary add-new-video-btn' if signed_in_admin? %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <div class='row video-area'>
+      <% @videos.each do |video| %>
+        <%= render partial: 'shared/video_box', locals: { article: video } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-sm-9 offset-sm-1">
+    <h1><%= link_to "Spotlight", spotlights_path, class: 'spotlights-link' %></h1>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Add New", new_spotlight_path, class: 'btn btn-secondary add-new-spotlight-btn' if signed_in_admin? %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <div class='row spotlight-area'>
+      <% @spotlights.each do |spotlight| %>
+        <%= render partial: 'shared/spotlight_box', locals: { article: spotlight } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-sm-9 offset-sm-1">
+    <h1><%= link_to "Get Your Good On", givings_path, class: 'gygos-link' %></h1>
+  </div>
+  <div class="col-sm-2">
+    <%= link_to "Add New", new_giving_path, class: 'btn btn-secondary add-new-giving-btn' if signed_in_admin? %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-10 offset-sm-1">
+    <div class='row giving-area'>
+      <% @givings.each do |company| %>
+        <%= render partial: 'shared/giving_box', locals: { article: company } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<hr>

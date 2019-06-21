@@ -1,31 +1,18 @@
-<div class="col-sm-3">
-  <div class="row">
-
-    <div class="dropdown">
-      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= "#{current_user.first_name} #{current_user.last_name}" %>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %>
-        <%= link_to "Home", root_path, class: "dropdown-item" %>
-        <div class="dropdown-divider"></div>
-        <h6 class="dropdown-header">Your Saved Article Indexes</h6>
-        <div class="dropdown-divider"></div>
-        <%= link_to 'Text', text_saved_path, class: "dropdown-item saved-text-index" %>
-        <%= link_to 'Video', video_saved_path, class: "dropdown-item saved-video-index" %>
-        <%= link_to 'Spotlight', spotlight_saved_path, class: "dropdown-item saved-spotlight-index" %>
-        <%= link_to 'GYGO', giving_saved_path, class: "dropdown-item saved-giving-index" %>
-        <div class="dropdown-divider"></div>
-        <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
-      </div>
-    </div>
+<div class="dropdown">
+  <a class="dropdown-toggle nav-link login-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= "#{current_user.first_name} #{current_user.last_name}" %>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <%= link_to 'Profile', user_path(current_user), class: "dropdown-item" %>
+    <%= link_to "Home", root_path, class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <h6 class="dropdown-header">Your Saved Article Indexes</h6>
+    <div class="dropdown-divider"></div>
+    <%= link_to 'Text', text_saved_path, class: "dropdown-item saved-text-index" %>
+    <%= link_to 'Video', video_saved_path, class: "dropdown-item saved-video-index" %>
+    <%= link_to 'Spotlight', spotlight_saved_path, class: "dropdown-item saved-spotlight-index" %>
+    <%= link_to 'GYGO', giving_saved_path, class: "dropdown-item saved-giving-index" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
   </div>
-</div>
-
-<div class="col-sm-6 text-center">
-</div>
-
-<div class="col-sm-3 text-right">
-    <%= link_to "Cancel", user_path(current_user) if @edit_page %>
-    <%= link_to "Sign Out", logout_path, class: "logout-link" unless @edit_page %>
 </div>

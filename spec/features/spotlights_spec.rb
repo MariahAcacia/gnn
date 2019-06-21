@@ -38,7 +38,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_link(class: 'add-new-spotlight-btn')
         click_on(class: 'add-new-spotlight-btn')
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("HOME")
+        expect(page).to have_content("GNN")
         expect(page).to have_content("Add New Spotlight")
         fill_in "Company name", with: company_name
         fill_in "Url", with: url
@@ -48,7 +48,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_content("success! New Spotlight Added Successfully!")
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("HOME")
+        expect(page).to have_content("GNN")
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content(company_name)
         expect(page).to have_content(blurb)
@@ -58,7 +58,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_link(class: 'add-new-spotlight-btn')
         click_on(class: 'add-new-spotlight-btn')
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("HOME")
+        expect(page).to have_content("GNN")
         expect(page).to have_content("Add New Spotlight")
         fill_in "Url", with: url
         fill_in "Blurb", with: blurb
@@ -107,6 +107,15 @@ feature 'Spotlight Articles' do
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).not_to have_content(spotlight.blurb)
       end
+
+      scenario 'see show page for more info about company' do
+        spotlight = create(:spotlight, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+        visit root_path
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).to have_link(class: 'show-btn')
+        click_link(class: 'show-btn')
+        expect(page).to have_content(spotlight.description)
+      end
     end
 
     context 'User' do
@@ -117,7 +126,7 @@ feature 'Spotlight Articles' do
       end
       scenario 'No option to add new' do
         expect(page).not_to have_link(class: 'add-new-spotlight-btn')
-        click_link(class: "spotlights-link")
+        first(class: "spotlights-link").click
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content(spotlight.blurb)
         expect(page).not_to have_link(class: 'add-new-spotlight-btn')
@@ -125,7 +134,7 @@ feature 'Spotlight Articles' do
 
       scenario 'No option to update' do
         expect(page).not_to have_link(class: 'edit-btn')
-        click_link(class: "spotlights-link")
+        first(class: "spotlights-link").click
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content(spotlight.blurb)
         expect(page).not_to have_link(class: 'edit-btn')
@@ -133,7 +142,7 @@ feature 'Spotlight Articles' do
 
       scenario 'No option to delete' do
         expect(page).not_to have_link(class: "delete-btn")
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content(spotlight.blurb)
         expect(page).not_to have_link(class: "delete-btn")
@@ -155,6 +164,15 @@ feature 'Spotlight Articles' do
         find('.save-btn', text: 'Save')
         expect(page).not_to have_content("Remove")
       end
+
+      scenario 'see show page for more info about company' do
+        spotlight = create(:spotlight, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+        visit root_path
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).to have_link(class: 'show-btn')
+        click_link(class: 'show-btn')
+        expect(page).to have_content(spotlight.description)
+      end
     end
 
     context 'non-user' do
@@ -163,7 +181,7 @@ feature 'Spotlight Articles' do
         visit root_path
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'edit-btn')
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'edit-btn')
       end
@@ -173,7 +191,7 @@ feature 'Spotlight Articles' do
         visit root_path
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'save-btn')
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'save-btn')
       end
@@ -183,7 +201,7 @@ feature 'Spotlight Articles' do
         visit root_path
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'delete-btn')
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'delete-btn')
       end
@@ -193,7 +211,7 @@ feature 'Spotlight Articles' do
         visit root_path
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'add-new-spotlight-btn')
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content(spotlights.first.blurb)
         expect(page).not_to have_link(class: 'add-new-spotlight-btn')
       end
@@ -201,13 +219,22 @@ feature 'Spotlight Articles' do
       scenario 'search' do
         spotlights = create_list(:spotlight, 3)
         visit root_path
-        click_link(class: 'spotlights-link')
+        first(class: 'spotlights-link').click
         expect(page).to have_content("SPOTLIGHT INDEX")
         fill_in "spotlight_query", with: spotlights.last.name
         click_on("Search")
         expect(page).to have_content("Spotlight Search Index")
         expect(page).to have_content(spotlights.last.company_name)
         expect(page).to have_content(spotlights.last.blurb)
+      end
+
+      scenario 'see show page for more info about company' do
+        spotlight = create(:spotlight, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+        visit root_path
+        expect(page).to have_content(spotlight.blurb)
+        expect(page).to have_link(class: 'show-btn')
+        click_link(class: 'show-btn')
+        expect(page).to have_content(spotlight.description)
       end
     end
 

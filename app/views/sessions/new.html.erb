@@ -1,5 +1,5 @@
 <div class="dropdown">
-  <%= link_to "Sign In", "#", class: "dropdown-toggle", title: '', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } %>
+  <%= link_to "Sign In", "#", class: "dropdown-toggle signin-link nav-link", title: '', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } %>
   <%= form_tag(session_path, { class: "dropdown-menu p-4" }) do %>
     <div class="form-group">
       <%= label_tag :email %>

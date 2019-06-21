@@ -1,31 +1,14 @@
-<div class="row"  style="font-size: 20px;">
-  <% if signed_in_admin? %>
-
-    <%= render partial: 'shared/admin_navbar' %>
-
-  <% elsif signed_in_user? %>
-
-    <%= render partial: 'shared/logged_in_nav' %>
-
-  <% else %>
-
-    <div class="col-sm-3">
-      <%= link_to "Sign Up", new_user_path %>
-    </div>
-
-    <div class="col-sm-6 text-center">
-    </div>
-
-    <div class="col-sm-3 text-right">
-      <%= render template: 'sessions/new' %>
-    </div>
-
-  <% end %>
-
-</div>
-
-<div class='row justify-content-center'>
+<div class='navbar fixed-top nav-fill justify-content-center'>
   <ul class='nav'>
+    <li class="nav-item">
+      <% if signed_in_admin? %>
+        <%= render partial: 'shared/admin_navbar' %>
+      <% elsif signed_in_user? %>
+        <%= render partial: 'shared/logged_in_nav' %>
+      <% else %>
+        <%= link_to "Sign Up", new_user_path, class: 'nav-link signup-link' %>
+      <% end %>
+    </li>
     <li class="nav-item">
       <h4><%= link_to "About", about_path, class: "nav-link about-link" %></h4>
     </li>
@@ -36,7 +19,7 @@
       <h4><%= link_to "Spotlight", spotlights_path, class: "nav-link spotlights-link" %></h4>
     </li>
     <li class='nav-item'>
-      <h1><%=link_to 'HOME', home_path, class: "nav-link home-link", title: "Home Page"%></h1>
+      <h3><%=link_to 'GNN', home_path, class: "nav-link home-link", title: "Home Page"%></h3>
     </li>
     <li class='nav-item'>
       <h4><%= link_to "Video", videos_path, class: "nav-link videos-link" %></h4>
@@ -47,6 +30,13 @@
     <li class='nav-item'>
       <h4><%= link_to "Contact", contact_path, class: 'nav-link contact-link' %></h4>
     </li>
+    <li class="nav-item">
+      <% if signed_in_user? || signed_in_admin? %>
+        <%= link_to "Cancel", user_path(current_user), class: 'nav-link cancel-link' if @edit_page %>
+        <%= link_to "Sign Out", logout_path, class: "logout-link nav-link signout-link" unless @edit_page %>
+      <% else %>
+        <%= render template: 'sessions/new' %>
+      <% end %>
+    </li>
   </ul>
 </div>
-<hr>

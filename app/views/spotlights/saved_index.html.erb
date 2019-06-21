@@ -1,6 +1,6 @@
 <%= render template: 'shared/navbar' %>
 
-<div class="row">
+<div class="row index-wrapper">
   <div class="col-sm-10 offset-sm-1">
     <h1>Your Saved Spotlight Links:</h1>
   </div>
@@ -10,7 +10,7 @@
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
       <% @spotlights.each do |x| %>
-        <%= render partial: "shared/spotlight_box", locals: { article: x } %> 
+        <%= render partial: "shared/spotlight_box", locals: { article: x } %>
       <% end %>
     </div>
   </div>

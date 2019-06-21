@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resource :saved_record, only: [:create, :destroy]
   resources :texts, except: [:show]
   resources :videos, except: [:show]
-  resources :spotlights, except: [:show]
-  resources :givings, except: [:show]
+  resources :spotlights
+  resources :givings
 
   get "video/saved" => "videos#saved_index"
   get "text/saved" => "texts#saved_index"

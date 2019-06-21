@@ -1,31 +1,16 @@
-<div class="col-sm-3">
-  <div class="row">
-
-    <div class="dropdown">
-      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <%= "#{administrator.first_name} #{administrator.last_name}" %>
-      </a>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <h6 class="dropdown-header">Add New Articles</h6>
-        <div class="dropdown-divider"></div>
-        <%= link_to 'Text', new_text_path, class: "dropdown-item" %>
-        <%= link_to 'Video', new_video_path, class: "dropdown-item" %>
-        <%= link_to 'Spotlight', new_spotlight_path, class: "dropdown-item" %>
-        <%= link_to 'GYGO', new_giving_path, class: "dropdown-item" %>
-        <div class="dropdown-divider"></div>
-        <%= link_to 'Analytics', '#', class: "dropdown-item" %>
-        <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
-      </div>
-    </div>
-
+<div class="dropdown">
+  <a class="dropdown-toggle nav-link login-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <%= "#{administrator.first_name} #{administrator.last_name}" %>
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <h6 class="dropdown-header">Add New Articles</h6>
+    <div class="dropdown-divider"></div>
+    <%= link_to 'Text', new_text_path, class: "dropdown-item" %>
+    <%= link_to 'Video', new_video_path, class: "dropdown-item" %>
+    <%= link_to 'Spotlight', new_spotlight_path, class: "dropdown-item" %>
+    <%= link_to 'GYGO', new_giving_path, class: "dropdown-item" %>
+    <div class="dropdown-divider"></div>
+    <%= link_to 'Analytics', '#', class: "dropdown-item" %>
+    <%= link_to 'Sign Out', logout_path, class: "dropdown-item" %>
   </div>
-</div>
-
-
-<div class="col-sm-6 text-center">
-</div>
-
-<div class="col-sm-3 text-right">
-    <%= link_to "Cancel", user_path(current_user) if @edit_page %>
-    <%= link_to "Sign Out", logout_path, class: "logout-link" unless @edit_page %>
 </div>

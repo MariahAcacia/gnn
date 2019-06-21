@@ -1,0 +1,74 @@
+.container-fluid {
+  font-family: 'Ariel';
+}
+
+.index-wrapper {
+  margin-top: 5em;
+}
+
+// Navbar
+.navbar {
+  background-color: #9c91aa;
+  height: 3.5em;
+}
+
+.nav-link {
+  color: black;
+}
+
+.about-link:hover {
+
+}
+
+.texts-link{
+  color: black;
+  &:hover {
+    color: #ff910c;
+    text-decoration: none;
+  }
+}
+
+.spotlights-link {
+  color: black;
+  &:hover {
+    color: #fff20c;
+    text-decoration: none;
+  }
+}
+
+.home-link:hover {
+  color: #6cd642;
+}
+
+.videos-link{
+  color: black;
+  &:hover {
+    color: #0c85ff;
+    text-decoration: none;
+  }
+}
+
+.gygos-link {
+  color: black;
+  &:hover {
+    color: #2d0cff;
+    text-decoration: none;
+  }
+}
+
+.contact-link:hover {
+  color: #7d0cff;
+}
+
+.signout-link:hover,
+.signin-link:hover,
+.cancel-link:hover,
+.login-link:hover,
+.signup-link:hover {
+  color: #ff0c0c;
+}
+
+.save-btn:hover,
+.show-btn:hover {
+  color: black;
+}

@@ -140,6 +140,13 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #show' do
+      it 'works as normal' do
+        get spotlight_path(spotlight)
+        expect(response).to be_successful
+      end
+    end
+
   end
 
   describe 'User Access' do
@@ -256,6 +263,13 @@ describe 'SpotlightRequests' do
       end
       it 'creates flash message' do
         expect(flash[:error]).to match(/You must be an Admin to access/)
+      end
+    end
+
+    describe 'GET #show' do
+      it 'works as normal' do
+        get spotlight_path(spotlight)
+        expect(response).to be_successful
       end
     end
 
@@ -380,6 +394,12 @@ describe 'SpotlightRequests' do
       end
     end
 
+    describe 'GET #show' do
+      it 'works as normal' do
+        get spotlight_path(spotlight)
+        expect(response).to be_successful
+      end
+    end
 
   end
 end

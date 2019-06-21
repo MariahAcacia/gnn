@@ -65,7 +65,7 @@ feature 'Saved Records' do
       expect(page).to have_content(@spotlight.first.company_name)
       expect(page).not_to have_link(class: 'save-btn')
       expect(page).not_to have_content('Save')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(@texts.first.headline)
       expect(page).not_to have_content("Save")

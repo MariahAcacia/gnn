@@ -86,7 +86,7 @@ feature 'Text Articles' do
 
     scenario 'delete' do
       expect(page).to have_link(class: 'delete-btn')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("#{@texts.first.headline}")
       first(:link, class: 'delete-btn').click
       expect(page).to have_content("TEXT INDEX")
@@ -133,7 +133,7 @@ feature 'Text Articles' do
       text = create(:text)
       visit root_path
       expect(page).to have_content(text.headline.strip)
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       fill_in "text_query", with: text.headline[0,5]
       click_on "Search"
@@ -150,7 +150,7 @@ feature 'Text Articles' do
 
     scenario 'no option to save' do
       expect(page).not_to have_link(class: 'save-btn')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(text.headline)
       expect(page).not_to have_link(class: 'save-btn')
@@ -158,7 +158,7 @@ feature 'Text Articles' do
 
     scenario 'no option to delete' do
       expect(page).not_to have_link(class: 'delete-btn')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(text.headline)
       expect(page).not_to have_link(class: 'delete-btn')
@@ -166,7 +166,7 @@ feature 'Text Articles' do
 
     scenario 'no option to create new' do
       expect(page).not_to have_link(class: 'add-new-text-btn')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(text.headline)
       expect(page).not_to have_link(class: 'add-new-text-btn')
@@ -174,7 +174,7 @@ feature 'Text Articles' do
 
     scenario 'no option to edit' do
       expect(page).not_to have_link(class: 'edit-btn')
-      click_link(class: 'texts-link')
+      first(class: 'texts-link').click
       expect(page).to have_content("TEXT INDEX")
       expect(page).to have_content(text.headline)
       expect(page).not_to have_link(class: 'edit-btn')

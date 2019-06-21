@@ -30,7 +30,7 @@ describe 'GivingRequests' do
         expect(response).to render_template :new
       end
     end
-    
+
     describe 'POST #create' do
       context 'successful' do
         it 'actually creates a new record' do
@@ -137,6 +137,13 @@ describe 'GivingRequests' do
         expect(response).to be_successful
       end
     end
+
+    describe 'GET #show' do
+      it 'works as normal' do
+        get giving_path(company)
+        expect(response).to be_successful
+      end
+    end
   end
 
   describe 'User Access' do
@@ -227,6 +234,13 @@ describe 'GivingRequests' do
     describe 'GET #saved_index' do
       it 'works as normal' do
         get giving_saved_path
+        expect(response).to be_successful
+      end
+    end
+
+    describe 'GET #show' do
+      it 'works as normal' do
+        get giving_path(company)
         expect(response).to be_successful
       end
     end
@@ -330,6 +344,12 @@ describe 'GivingRequests' do
       end
     end
 
+    describe 'GET #show' do
+      it 'works as normal' do
+        get giving_path(company)
+        expect(response).to be_successful
+      end
+    end
   end
 
 end

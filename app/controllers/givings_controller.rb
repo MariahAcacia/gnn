@@ -2,7 +2,7 @@ class GivingsController < ApplicationController
 
   before_action :set_company, only: [:edit, :update, :show, :destroy]
   before_action :require_admin, only: [:new, :create, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:index, :search_index]
+  skip_before_action :require_login, only: [:index, :search_index, :show]
 
   def index
     @newest_givings = Giving.newest_four

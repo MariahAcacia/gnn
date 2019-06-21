@@ -39,7 +39,7 @@ feature 'Giving Companies' do
     scenario 'add New company' do
       expect(page).to have_link(class: 'add-new-giving-btn')
       click_link(class: 'add-new-giving-btn')
-      expect(page).to have_content("HOME")
+      expect(page).to have_content("GNN")
       expect(page).to have_content("Add New Giving Company")
       fill_in "Company name", with: company_name
       fill_in "Url", with: url
@@ -50,7 +50,7 @@ feature 'Giving Companies' do
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company_name)
       expect(page).to have_content(blurb)
-      click_on("HOME")
+      click_on("GNN")
       expect(page).to have_content(company_name)
       expect(page).to have_content(blurb)
     end
@@ -58,7 +58,7 @@ feature 'Giving Companies' do
     scenario 'unable to add new company' do
       expect(page).to have_link(class: 'add-new-giving-btn')
       click_link(class: 'add-new-giving-btn')
-      expect(page).to have_content("HOME")
+      expect(page).to have_content("GNN")
       expect(page).to have_content("Add New Giving Company")
       fill_in "Twitter", with: twitter
       expect{ click_on(class: 'create-giving-btn') }.to change(Giving, :count).by(0)
@@ -72,13 +72,13 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'edit-btn')
       click_link(class: 'edit-btn')
-      expect(page).to have_content("HOME")
+      expect(page).to have_content("GNN")
       expect(page).to have_content("Edit Giving Company")
       fill_in "Company name", with: company_name
       click_on "Update Giving"
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company_name)
-      click_on("HOME")
+      click_on("GNN")
       expect(page).to have_content("Welcome to GNN,")
       expect(page).to have_content(company_name)
     end
@@ -105,6 +105,16 @@ feature 'Giving Companies' do
       expect(page).not_to have_content(company.company_name)
     end
 
+    scenario 'see show page for more info about company' do
+      company = create(:giving, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+      expect(company.description).not_to be_nil
+      visit root_path
+      expect(page).to have_content(company.blurb)
+      expect(page).to have_link(class: 'show-btn')
+      click_link(class: 'show-btn')
+      expect(page).to have_content(company.name)
+      expect(page).to have_content(company.description)
+    end
   end
 
   context 'User' do
@@ -118,7 +128,7 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'add-new-giving-btn')
       expect(page).to have_link(class: 'gygos-link')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'add-new-giving-btn')
     end
@@ -127,7 +137,7 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'edit-btn')
       expect(page).to have_link(class: 'gygos-link')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'edit-btn')
     end
@@ -136,7 +146,7 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'delete-btn')
       expect(page).to have_link(class: 'gygos-link')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'delete-btn')
     end
@@ -144,7 +154,7 @@ feature 'Giving Companies' do
     scenario 'save and remove article' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
       expect(page).to have_content("Save")
@@ -166,6 +176,16 @@ feature 'Giving Companies' do
       expect(page).to have_content("Save")
     end
 
+    scenario 'see show page for more info about company' do
+      company = create(:giving, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+      expect(company.description).not_to be_nil
+      visit root_path
+      expect(page).to have_content(company.blurb)
+      expect(page).to have_link(class: 'show-btn')
+      click_link(class: 'show-btn')
+      expect(page).to have_content(company.name)
+      expect(page).to have_content(company.description)
+    end
   end
 
   context 'Non User' do
@@ -177,40 +197,50 @@ feature 'Giving Companies' do
     end
     scenario 'no option to add new' do
       expect(page).not_to have_link(class: 'add-new-giving-btn')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'add-new-giving-btn')
     end
     scenario 'no option to edit' do
       expect(page).not_to have_link(class: 'edit-btn')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'edit-btn')
     end
     scenario 'no option to save' do
       expect(page).not_to have_link(class: 'save-btn')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'save-btn')
     end
     scenario 'no option to delete' do
       expect(page).not_to have_link(class: 'delete-btn')
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company.company_name)
       expect(page).not_to have_link(class: 'delete-btn')
     end
     scenario 'searching for companies' do
-      click_link(class: 'gygos-link')
+      first(class: 'gygos-link').click
       expect(page).to have_button("Search")
       fill_in "Search Companies", with: company.company_name
       click_on("Search")
       expect(page).to have_content(company.company_name)
       expect(page).to have_content("Search Index")
       expect(page).to have_content(company.company_name)
+    end
+    scenario 'see show page for more info about company' do
+      company = create(:giving, description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+      expect(company.description).not_to be_nil
+      visit root_path
+      expect(page).to have_content(company.blurb)
+      expect(page).to have_link(class: 'show-btn')
+      click_link(class: 'show-btn')
+      expect(page).to have_content(company.name)
+      expect(page).to have_content(company.description)
     end
   end
 
