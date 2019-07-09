@@ -2,9 +2,11 @@
   <%= link_to(article.url) do %>
     <p><%= article.company_name unless nil %></p>
     <p><%= article.name unless nil %></p>
-    <div style="width: 175px; height: 150px; background-color:gray;">
-      <%= article.photo unless nil %>
-    </div>
+    <% if article.photo.blank? %>
+      <img src="<%= asset_path('pink.jpg')%>" class="photo-style"/>
+    <% else %>
+      <%= article.photo %>
+    <% end %>
     <p><%= article.blurb %></p>
     <%= render partial: "shared/action_buttons", locals: { article: article } %>
   <% end %>

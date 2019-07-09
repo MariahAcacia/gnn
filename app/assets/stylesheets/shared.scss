@@ -1,15 +1,23 @@
 .container-fluid {
-  font-family: 'Ariel';
+  font-family: 'Raleway', sans-serif;
 }
 
-.index-wrapper {
+body {
   margin-top: 5em;
+  background-color: #dadbf2;
+  background-color: rgba(195, 198, 274, .7);
 }
+
+body a {
+  color: black;
+}
+
 
 // Navbar
 .navbar {
-  background-color: #9c91aa;
   height: 3.5em;
+  border-bottom: solid black 1px;
+  background-color: white;
 }
 
 .nav-link {
@@ -71,4 +79,17 @@
 .save-btn:hover,
 .show-btn:hover {
   color: black;
+}
+
+// article sections
+.article-section {
+  background-color: white;
+  margin: 3em;
+  padding: 1em 0em;
+  border-radius: 25px;
+}
+
+.photo-style {
+  height: 150px;
+  width: 175px;
 }

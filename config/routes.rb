@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :spotlights
   resources :givings
 
+  get "user/admin" => "users#admin_panel"
+  get "user/search_all" => "users#search_all"
+
   get "video/saved" => "videos#saved_index"
   get "text/saved" => "texts#saved_index"
   get "spotlight/saved" => "spotlights#saved_index"

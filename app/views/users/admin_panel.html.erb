@@ -1,0 +1,100 @@
+<%= render template: "shared/navbar" %>
+<div class="row show-wrapper">
+  <div class="col-sm-10 offset-sm-1">
+    <div class="row">
+      <div class="col-sm-10">
+        <h1>Admin Panel</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Users</h2>
+        <div class="row">
+          <div class="col-sm-10 offset-sm-1">
+            <h5>Total Users: <%= User.count %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Text</h2>
+        <div class="row">
+          <div class="col-sm-10 offset-sm-1">
+            <h5>Total Text Articles: <%= article_count('Text') %></h5>
+            <h5>Total Saved: <%= saved_article_count('Text') %></h5>
+            <h5>Top Saved Articles:</h5>
+            <div class="row">
+              <div class="col-sm-10 offset-sm-1">
+                <%= @saved_text %> 
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 offset-sm-10">
+            <%= link_to "New Text", new_text_path, class: 'btn btn-secondary add-new-text-btn' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Video</h2>
+        <div class="row">
+          <div class="col-sm-11 offset-sm-1">
+            <h5>Total Video Articles: <%= article_count('Video') %></h5>
+            <h5>Total Saved: <%= saved_article_count('Video') %></h5>
+            <h5>Top Saved Articles:</h5>
+            <div class="row">
+              <div class="col-sm-10 offset-sm-1">
+                asdjf;sakjdf;kjs
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 offset-sm-10">
+            <%= link_to "New Video", new_video_path, class: 'btn btn-secondary add-new-video-btn' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Spotlight</h2>
+        <div class="row">
+          <div class="col-sm-11 offset-sm-1">
+            <h5>Total Spotlights: <%= article_count('Spotlight') %></h5>
+            <h5>Total Saved: <%= saved_article_count('Spotlight') %></h5>
+            <h5>Top Saved Articles:</h5>
+            <div class="row">
+              <div class="col-sm-10 offset-sm-1">
+                asdjf;sakjdf;kjs
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 offset-sm-10">
+            <%= link_to "New Spotlight", new_spotlight_path, class: 'btn btn-secondary add-new-spotlight-btn' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1">
+        <h2>Giving</h2>
+        <div class="row">
+          <div class="col-sm-11 offset-sm-1">
+            <h5>Total Giving Companies: <%= article_count('Giving') %></h5>
+            <h5>Total Saved: <%= saved_article_count('Giving') %></h5>
+            <h5>Top Saved Articles:</h5>
+            <div class="row">
+              <div class="col-sm-10 offset-sm-1">
+                asdjf;sakjdf;kjs
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 offset-sm-10">
+            <%= link_to "New Giving", new_giving_path, class: 'btn btn-secondary add-new-giving-btn' %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

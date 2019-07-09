@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
       end
       flash[:success] = "Welcome Back!"
     else
-      flash[:error] = "Unable to sign in - Please check username and password"
+      flash[:error] = "Invalid User/Password Combination"
     end
     redirect_to root_path
   end

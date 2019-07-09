@@ -1,5 +1,5 @@
 <% if signed_in_user? %>
-  <%= render partial: 'shared/save_unsave', locals: { article: article } %>
+  <%= render partial: 'shared/save_unsave', locals: { article: article } unless current_user.admin == true %>
 <% end %>
 <% if signed_in_admin? %>
   <%= link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn' %>

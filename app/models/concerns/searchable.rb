@@ -31,7 +31,4 @@ module Searchable
 
   end
 
-
-
-
 end

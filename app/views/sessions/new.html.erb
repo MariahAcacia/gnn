@@ -1,6 +1,6 @@
 <div class="dropdown">
   <%= link_to "Sign In", "#", class: "dropdown-toggle signin-link nav-link", title: '', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } %>
-  <%= form_tag(session_path, { class: "dropdown-menu p-4" }) do %>
+  <%= form_tag(session_path, { class: "dropdown-menu p-3" }) do %>
     <div class="form-group">
       <%= label_tag :email %>
       <%= text_field_tag :email, "", class: "form-control" %>
@@ -13,7 +13,7 @@
       <%= label_tag do %>
         Confirm Password
         <%= password_field_tag :password_confirmation, "", class: "form-control" %>
-      <% end %>
+        <% end %>
     </div>
     <div class="form-group">
       <div class="form-check">

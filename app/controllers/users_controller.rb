@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
+  before_action :require_admin, only: [:admin_show]
   before_action :require_current_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_login, only: [:home, :new, :create]
-
+  skip_before_action :require_login, only: [:home, :new, :create, :search_all]
 
   def home
     @texts = Text.newest_four
@@ -35,6 +35,14 @@ class UsersController < ApplicationController
     @gygos = @user.get_saved("Giving")
   end
 
+  def admin_panel
+    @administrator
+    @saved_text = SavedRecord.top_saved_articles("Text")
+    @saved_video = SavedRecord.top_saved_articles("Video")
+    @saved_spotlight = SavedRecord.top_saved_articles("Spotlight")
+    @saved_giving = SavedRecord.top_saved_articles("Giving")
+  end
+
   def edit
     @edit_page = true
   end
@@ -57,6 +65,13 @@ class UsersController < ApplicationController
       flash[:error] = "There was an error and we are unable to delete your account"
       redirect_to user_path(current_user)
     end
+  end
+
+  def search_all
+    @texts = Text.article_search(params[:search_query])
+    @videos = Video.article_search(params[:search_query])
+    @spotlights = Spotlight.company_search(params[:search_query])
+    @givings = Giving.company_search(params[:search_query])
   end
 
   private
