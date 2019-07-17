@@ -1,7 +1,11 @@
-<%= simple_form_for text do |t| %>
-  <%= t.input :headline %>
-  <%= t.input :blurb %>
-  <%= t.input :url %>
-  <%= t.input :photo %>
-  <%= t.button :submit, class: 'btn btn-secondary create-text-btn' %>
-<% end %>
+<div class="row">
+  <div class="col-sm-8 offset-sm-2 form-wrapper">
+   <%= simple_form_for text do |t| %>
+    <%= t.input :headline %>
+    <%= t.input :blurb %>
+    <%= t.input :url %>
+    <%= t.input :photo %>
+    <%= t.button :submit, class: 'btn btn-secondary create-text-btn' %>
+  <% end %>
+  </div>
+</div>

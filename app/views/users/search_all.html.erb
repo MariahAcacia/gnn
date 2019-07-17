@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-sm-7 offset-sm-1">
-    <h1>Search All Results</h1>
+    <h2>Search Results</h2>
   </div>
   <div class="col-sm-4">
     <%= render partial: 'shared/search_all_form' %>
@@ -12,13 +12,13 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <h1>Text (<%= @texts.count %>)</h1>
+      <h2>Text (<%= @texts.count %>)</h2>
       <% if @texts.empty? %>
         <p>No articles match search query</p>
       <% end %>
       <div class="row">
         <% @texts.each do |text| %>
-          <%= render partial: 'shared/text_box', locals: { article: text } %>
+          <%= render partial: 'texts/text_box', locals: { article: text } %>
         <% end %>
       </div>
     </div>
@@ -28,13 +28,13 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <h1>Video (<%= @videos.count %>)</h1>
+      <h2>Video (<%= @videos.count %>)</h2>
       <% if @videos.empty? %>
         <p>No articles match search query</p>
       <% end %>
       <div class="row">
         <% @videos.each do |video| %>
-          <%= render partial: 'shared/video_box', locals: { article: video } %>
+          <%= render partial: 'videos/video_box', locals: { article: video } %>
         <% end %>
       </div>
     </div>
@@ -44,13 +44,13 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <h1>Spotlight (<%= @spotlights.count %>)</h1>
+      <h2>Spotlight (<%= @spotlights.count %>)</h2>
       <% if @spotlights.empty? %>
         <p>No articles match search query</p>
       <% end %>
       <div class="row">
         <% @spotlights.each do |spotlight| %>
-          <%= render partial: 'shared/spotlight_box', locals: { article: spotlight } %>
+          <%= render partial: 'spotlights/spotlight_box', locals: { article: spotlight } %>
         <% end %>
       </div>
     </div>
@@ -60,13 +60,13 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
-      <h1>Get Your Good On (<%= @givings.count %>)</h1>
+      <h2>Get Your Good On (<%= @givings.count %>)</h2>
       <% if @givings.empty? %>
         <p>No articles match search query</p>
       <% end %>
       <div class="row">
         <% @givings.each do |giving| %>
-          <%= render partial: 'shared/giving_box', locals: { article: giving } %>
+          <%= render partial: 'givings/giving_box', locals: { article: giving } %>
         <% end %>
       </div>
     </div>

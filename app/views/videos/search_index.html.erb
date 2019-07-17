@@ -17,7 +17,7 @@
     <div class="col-sm-10 offset-sm-1">
       <div class="row">
       <% @videos.each do |video| %>
-        <%= render partial: 'shared/text_box', locals: { article: video } %>
+        <%= render partial: 'texts/text_box', locals: { article: video } %>
       <% end %>
       </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="col-sm-3">
-  <%= link_to(article.url) do %>
-    <p><%= article.company_name unless nil %></p>
-    <p><%= article.name unless nil %></p>
+  <%= link_to(article.url, target: :_blank) do %>
+    <p class="headline-text"><%= article.company_name unless nil %></p>
+    <p class="headline-text"><%= article.name unless nil %></p>
     <div style="width: 175px; height: 150px; background-color:gray;">
       <%= article.photo unless nil %>
     </div>

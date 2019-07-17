@@ -1,26 +1,33 @@
-<div class="dropdown">
-  <%= link_to "Sign In", "#", class: "dropdown-toggle signin-link nav-link", title: '', data: { toggle: 'dropdown', 'aria-haspopup': 'true', 'aria-expanded': 'false' } %>
-  <%= form_tag(session_path, { class: "dropdown-menu p-3" }) do %>
-    <div class="form-group">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :password %>
-      <%= password_field_tag :password, "", class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag do %>
-        Confirm Password
-        <%= password_field_tag :password_confirmation, "", class: "form-control" %>
-        <% end %>
-    </div>
-    <div class="form-group">
-      <div class="form-check">
-        <%= check_box_tag :remember_me %>
-        <%= label_tag :remember_me %>
+<%= render template: 'shared/navbar' %>
+
+<div class="row justify-content-center">
+  <h1>Login as Returning User</h1>
+</div>
+
+<div class="row">
+  <div class="col-sm-6 offset-sm-3 login-form-wrapper">
+    <%= form_tag(session_path) do %>
+      <div class="form-group">
+        <%= label_tag :email %>
+        <%= text_field_tag :email, "", class: "form-control" %>
       </div>
-    </div>
-    <%= submit_tag "Sign In", class: "btn btn-primary" %>
-  <% end %>
+      <div class="form-group">
+        <%= label_tag :password %>
+        <%= password_field_tag :password, "", class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= label_tag do %>
+          Confirm Password
+          <%= password_field_tag :password_confirmation, "", class: "form-control" %>
+          <% end %>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <%= check_box_tag :remember_me %>
+          <%= label_tag :remember_me %>
+        </div>
+      </div>
+      <%= submit_tag "Login", class: "btn btn-primary login-btn" %>
+    <% end %>
+  </div>
 </div>

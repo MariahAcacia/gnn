@@ -5,18 +5,18 @@ feature 'Text Articles' do
   let(:admin){ create(:user, admin: true) }
   let(:user){ create(:user) }
   let(:text){ create(:text) }
-  let(:sign_in_admin){ click_button "Sign In"
+  let(:sign_in_admin){ click_link "Login"
                        fill_in "Email", with: "#{admin.email}"
                        fill_in "password", with: "password"
                        fill_in "Confirm Password", with: "password"
-                       click_button "Sign In"
+                       click_on(class: "login-btn")
                        expect(page).to have_content("Welcome Back!")
                        expect(page).to have_content("#{admin.first_name} #{admin.last_name}")}
-  let(:sign_in_user){ click_button "Sign In"
+  let(:sign_in_user){ click_link "Login"
                       fill_in "Email", with: "#{user.email}"
                       fill_in "password", with: "password"
                       fill_in "Confirm Password", with: "password"
-                      click_button "Sign In" }
+                      click_on(class: 'login-btn') }
 
   before  do
     visit root_path

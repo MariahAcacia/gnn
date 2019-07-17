@@ -10,7 +10,7 @@
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
       <% @givings.each do |x| %>
-        <%= render partial: 'shared/giving_box', locals: { article: x } %>
+        <%= render partial: 'givings/giving_box', locals: { article: x } %>
       <% end %>
     </div>
   </div>

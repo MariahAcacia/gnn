@@ -2,11 +2,13 @@ require 'rails_helper'
 
 feature 'User Accounts' do
   let(:user){ create(:user) }
-  let(:sign_in){ click_button "Sign In"
+  let(:sign_in){ click_link "Login"
+                 expect(page).to have_content("Login as Returning User")
                  fill_in "Email", with: "#{user.email}"
                  fill_in "password", with: "password"
                  fill_in "Confirm Password", with: "password"
-                 click_button "Sign In" }
+                 click_on(class: 'login-btn')
+                 expect(page).to have_content "Welcome Back!"}
 
   before do
     visit root_path
@@ -46,31 +48,31 @@ feature 'User Accounts' do
 
   scenario 'log in as returning user' do
     sign_in
-    expect(page).to have_content "Welcome Back!"
+    expect(page).to have_content "#{user.first_name} #{user.last_name}"
     expect(page).to have_content "Welcome to GNN, where all the news is good news!"
-    expect(page).to have_content "Sign Out"
+    expect(page).to have_content "Logout"
   end
 
   scenario 'unable to login' do
-    click_button "Sign In"
+    click_link "Login"
     fill_in "Email", with: "blkajbdlkj"
     fill_in "password", with: "password"
     fill_in "Confirm Password", with: "password"
-    click_button "Sign In"
-    expect(page).to have_content "Unable to sign in - Please check username and password"
+    click_on(class: 'login-btn')
+    expect(page).to have_content "error! Invalid User/Password Combination"
     expect(page).to have_content "Welcome to GNN, where all the news is good news!"
     expect(page).to have_content "Sign Up"
-    expect(page).to have_content "Sign In"
+    expect(page).to have_content "Login"
   end
 
   scenario 'logout' do
     sign_in
-    expect(page).to have_content "Sign Out"
+    expect(page).to have_content "Logout"
     click_on(class: 'logout-link')
     expect(page).to have_content "You've successfully logged out"
     expect(page).to have_content "Welcome to GNN, where all the news is good news!"
     expect(page).to have_content "Sign Up"
-    expect(page).to have_content "Sign In"
+    expect(page).to have_content "Login"
   end
 
   scenario 'edit profile info successfully' do

@@ -1,6 +1,6 @@
 <div class="col-sm-3">
-  <%= link_to(article.url) do %>
-    <p><strong><%= article.headline %></strong></p>
+  <%= link_to(article.url, target: :_blank) do %>
+    <p class="headline-text"><strong><%= article.headline %></strong></p>
     <div style="width: 175px; height: 150px; background-color:gray;">
       <%= article.photo unless nil %>
     </div>

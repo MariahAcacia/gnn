@@ -20,7 +20,7 @@
         </div>
         <div class="row">
           <% @texts.first(4).each do |text| %>
-            <%= render partial: 'shared/text_box', locals: { article: text } %>
+            <%= render partial: 'texts/text_box', locals: { article: text } %>
           <% end %>
         </div>
       </div>
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
           <% @videos.first(4).each do |video| %>
-            <%= render partial: "shared/video_box", locals: { article: video } %>
+            <%= render partial: "videos/video_box", locals: { article: video } %>
           <% end %>
         </div>
       </div>
@@ -44,7 +44,7 @@
         </div>
         <div class="row">
           <% @spotlights.first(4).each do |spotlight| %>
-            <%= render partial: 'shared/spotlight_box', locals: { article: spotlight } %>
+            <%= render partial: 'spotlights/spotlight_box', locals: { article: spotlight } %>
           <% end %>
         </div>
       </div>
@@ -56,7 +56,7 @@
         </div>
         <div class="row">
           <% @gygos.first(4).each do |gygo| %>
-            <%= render partial: 'shared/giving_box', locals: { article: gygo } %>
+            <%= render partial: 'givings/giving_box', locals: { article: gygo } %>
           <% end %>
         </div>
       </div>

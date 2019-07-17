@@ -1,0 +1,26 @@
+<hr>
+<div class='row justify-content-center'>
+  <p>Get in touch:</p>
+</div>
+<div class='row justify-content-center'>
+  <%= link_to facebook, class: "social-link" do %>
+    <div class="facebook-link-wrapper social-link-wrapper">
+      <%=  image_tag('facebook.png') %>
+    </div>
+  <% end %>
+  <%= link_to email, class: "social-link" do %>
+    <div class="mail-link-wrapper social-link-wrapper">
+      <%= image_tag('mail_share.png') %>
+    </div>
+  <% end %>
+  <%= link_to instagram,  class: "social-link" do %>
+    <div class="pinterest-link-wrapper social-link-wrapper">
+      <img src="https://img.icons8.com/ios/50/000000/instagram-new.png">
+    </div>
+  <% end %>
+  <%= link_to twitter, class: "social-link" do %>
+    <div class="twitter-link-wrapper social-link-wrapper">
+      <%= image_tag('twitter.png') %>
+    </div>
+  <% end %>
+</div>

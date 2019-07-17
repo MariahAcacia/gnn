@@ -3,8 +3,7 @@
 }
 
 body {
-  margin-top: 5em;
-  background-color: #dadbf2;
+  margin-top: 6em;
   background-color: rgba(195, 198, 274, .7);
 }
 
@@ -12,11 +11,19 @@ body a {
   color: black;
 }
 
-
 // Navbar
+.navbar ul.navbar-nav li.nav-item a.nav-link {
+  color: black;
+}
+
+// regular navbar styles
 .navbar {
-  height: 3.5em;
+  height: 81px;
   border-bottom: solid black 1px;
+  background-color: white;
+}
+
+.navbar-collapse {
   background-color: white;
 }
 
@@ -68,7 +75,7 @@ body a {
   color: #7d0cff;
 }
 
-.signout-link:hover,
+.logout-link:hover,
 .signin-link:hover,
 .cancel-link:hover,
 .login-link:hover,
@@ -87,9 +94,115 @@ body a {
   margin: 3em;
   padding: 1em 0em;
   border-radius: 25px;
+  h1,
+  h2 {
+    margin-bottom: 0.5em;
+  }
 }
 
 .photo-style {
   height: 150px;
   width: 175px;
+}
+
+//giving and spotlight show pages
+.description-div {
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
+.show-wrapper {
+  background-color: white;
+  border-radius: 25px;
+  margin-top: 1em;
+  margin-bottom: 4em;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
+//social buttons styles
+.social-link-wrapper {
+   background-color: black;
+   padding: 1em;
+   border-radius: 100%;
+   margin: 1em;
+   margin-top: 1em;
+}
+
+.social-link img {
+  height: 1.5em;
+  filter: invert(100%);
+}
+
+
+.facebook-link-wrapper:hover {
+  background-color: #3D5B99;
+  img {
+    filter: invert(0%);
+  }
+}
+
+.google-plus-link-wrapper:hover {
+  background-color: #DB4437;
+  img {
+    filter: invert(0%);
+  }
+}
+
+.twitter-link-wrapper:hover {
+  background-color: #44A2F2;
+  img {
+    filter: invert(0%);
+  }
+}
+
+.pinterest-link-wrapper:hover {
+  background-color: #E73E36;
+  img {
+    filter: invert(0%);
+  }
+}
+
+.mail-link-wrapper:hover {
+  background-color: #37e554;
+  img {
+    filter: invert(0%);
+  }
+}
+
+.search-bar input {
+  align-items: center;
+  border-radius: 10px;
+}
+
+::-webkit-input-placeholder {
+   text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align: center;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;
+}
+
+:-ms-input-placeholder {
+   text-align: center;
+}
+
+// form(s) styles
+.user-form-wrapper,
+.login-form-wrapper,
+.form-wrapper,
+.static-page-wrapper {
+  background-color: white;
+  border-radius: 25px;
+  padding: 3em;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.headline-text {
+  height: 2.5em;
 }

@@ -1,12 +1,16 @@
-<%= simple_form_for company do |c| %>
-  <%= c.input :company_name %>
-  <%= c.input :name %>
-  <%= c.input :url %>
-  <%= c.input :blurb %>
-  <%= c.input :twitter %>
-  <%= c.input :instagram %>
-  <%= c.input :facebook %>
-  <%= c.input :email %>
-  <%= c.input :photo %>
-  <%= c.button :submit, class: 'btn btn-secondary create-giving-btn' %>
-<% end %>
+<div class='row'>
+  <div class="col-sm-8 offset-sm-2 form-wrapper">
+    <%= simple_form_for company do |c| %>
+      <%= c.input :company_name %>
+      <%= c.input :name %>
+      <%= c.input :url %>
+      <%= c.input :blurb %>
+      <%= c.input :twitter %>
+      <%= c.input :instagram %>
+      <%= c.input :facebook %>
+      <%= c.input :email %>
+      <%= c.input :photo %>
+      <%= c.button :submit, class: 'btn btn-secondary create-giving-btn' %>
+    <% end %>
+  </div>
+</div>
