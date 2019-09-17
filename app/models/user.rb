@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 
   has_secure_password
-  
+
   validates :first_name, :last_name,
                           presence: true,
                           length: { in: 2..20 }
@@ -38,4 +38,15 @@ class User < ApplicationRecord
     end
     @saved
   end
+
+  def name
+    first_name + " " + last_name
+  end
+
+  def name=(name)
+    full = name.split(" ")
+    first_name = full.first
+    last_name = full.last
+  end
+
 end

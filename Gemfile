@@ -16,6 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# bootstrap
+gem 'bootstrap', '~> 4.3.1'
+
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 
@@ -92,7 +96,6 @@ group :test do
   # used for testing database cleaning
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'rails-controller-testing'
 end
 
 group :production do

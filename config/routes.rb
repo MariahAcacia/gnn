@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "login" => "sessions#new"
   get "logout" => "sessions#destroy"
   get "about" => "static_pages#about"
-  get "contact" => "static_pages#contact"
+  get "contact" => "messages#new", as: "new_message"
+  post "contact" => "messages#create", as: "create_message"
 
 end

@@ -1,0 +1,10 @@
+<%= simple_form_for @message, url: create_message_path do |f| %>
+  <p>Name:
+  <br><%= current_user.name %></p>
+  <%= f.hidden_field :name, value: current_user.name %>
+  <p>email:
+  <br><%= current_user.email %></p>
+  <%= f.hidden_field :email, value: current_user.email %>
+  <%= f.input :body %>
+  <%= f.button :submit, class: 'btn btn-secondary' %>
+<% end %>

@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+
+  message_mailer:
+    contact_me:

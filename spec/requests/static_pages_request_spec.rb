@@ -19,7 +19,7 @@ describe 'StaticPagesRequests' do
 
     describe "GET #contact" do
       it 'works as normal' do
-        get contact_path
+        get new_message_path
         expect(response).to be_successful
       end
     end
@@ -37,7 +37,7 @@ describe 'StaticPagesRequests' do
 
     describe "GET #contact" do
       it 'works as normal' do
-        get contact_path
+        get new_message_path
         expect(response).to be_successful
       end
     end
