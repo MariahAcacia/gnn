@@ -21,9 +21,7 @@
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-    <% newest_articles.each do |a| %>
-      <%= render partial: "#{article}s/#{article}_box", locals: { article: a } %>
-    <% end %>
+      <%= render partial: "#{article}s/#{article}_box", collection: newest_articles, as: :article %>
     </div>
   </div>
 </div>
@@ -37,9 +35,7 @@
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-    <% articles.each do |a| %>
-      <%= render partial: "#{article}s/#{article}_box", locals: { article: a } %>
-    <% end %>
+      <%= render partial: "#{article}s/#{article}_box", collection: articles, as: :article %>
     </div>
   </div>
 </div>

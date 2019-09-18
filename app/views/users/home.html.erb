@@ -25,9 +25,7 @@
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
       <div class="row text-area">
-        <% @texts.each do |text| %>
-          <%= render partial: 'texts/text_box', locals: { article: text } %>
-        <% end %>
+          <%= render partial: 'texts/text_box', collection: @texts, as: :article %>
       </div>
     </div>
   </div>
@@ -45,9 +43,7 @@
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
       <div class='row video-area'>
-        <% @videos.each do |video| %>
-          <%= render partial: 'videos/video_box', locals: { article: video } %>
-        <% end %>
+        <%= render partial: 'videos/video_box', collection: @videos, as: :article %>
       </div>
     </div>
   </div>
@@ -65,9 +61,7 @@
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
       <div class='row spotlight-area'>
-        <% @spotlights.each do |spotlight| %>
-          <%= render partial: 'spotlights/spotlight_box', locals: { article: spotlight } %>
-        <% end %>
+        <%= render partial: 'spotlights/spotlight_box', collection: @spotlights, as: :article %>
       </div>
     </div>
   </div>
@@ -85,9 +79,7 @@
   <div class="row">
     <div class="col-sm-10 offset-sm-1">
       <div class='row giving-area'>
-        <% @givings.each do |company| %>
-          <%= render partial: 'givings/giving_box', locals: { article: company } %>
-        <% end %>
+        <%= render partial: 'givings/giving_box', collection: @givings, as: :article %>
       </div>
     </div>
   </div>

@@ -9,9 +9,7 @@
 <div class="row">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-      <% @spotlights.each do |x| %>
-        <%= render partial: "spotlights/spotlight_box", locals: { article: x } %>
-      <% end %>
+      <%= render partial: "spotlights/spotlight_box", collection: @spotlights, as: :article } %>
     </div>
   </div>
 </div>

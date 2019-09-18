@@ -85,6 +85,8 @@ group :development do
   gem "binding_of_caller"
   gem "bullet"
   gem "hirb"
+  # chrome extension
+  gem 'meta_request'
 end
 
 group :test do

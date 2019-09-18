@@ -15,9 +15,7 @@
 <div class="row article-section">
   <div class="col-sm-10 offset-sm-1">
     <div class="row">
-      <% articles.each do |a| %>
-        <%= render partial: "#{article}s/#{article}_box", locals: { article: a } %>
-      <% end %>
+      <%= render partial: "#{article}s/#{article}_box", collection:  articles, as: :article } %>
     </div>
   </div>
 </div>
