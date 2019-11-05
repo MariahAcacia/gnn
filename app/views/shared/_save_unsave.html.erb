@@ -1,9 +1,1 @@
-<% if saved?(article, current_user) %>
-  <%= link_to "Remove", saved_record_path( save: { user_id: current_user.id,
-                                               saveable_id: article.id,
-                                             saveable_type: article.class.to_s } ), method: :delete, class: 'btn btn-secondary btn-sm save-btn' %>
-<% else %>
-  <%= link_to "Save", saved_record_path( save: { user_id: current_user.id,
-                                             saveable_id: article.id,
-                                           saveable_type: article.class.to_s } ), method: :post, class: 'btn btn-secondary btn-sm save-btn' %>
-<% end %>
+<%= save_remove_links(article, current_user) %> 

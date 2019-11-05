@@ -26,6 +26,32 @@ module ApplicationHelper
     str.html_safe
   end
 
-  
+  def article_action_links(article)
+    if signed_in_user?
+      str = render partial: 'shared/save_unsave', locals: { article: article } unless current_user.admin == true
+    elsif signed_in_admin?
+      str = link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn'
+      str = link_to "Delete", polymorphic_path(article), method: "DELETE", class: 'btn btn-secondary btn-sm delete-btn', data: { confirm: "Are you sure you want to delete this article? This action cannot be undone." }
+    end
+  end
+
+  def read_more_about_link(article)
+    if article.class == Giving || article.class == Spotlight
+      str = link_to "Read More About...", polymorphic_path(article), class: 'btn btn-secondary btn-sm show-btn' if article.description
+    end
+  end
+
+  def save_remove_links (article, current_user)
+    if saved?(article, current_user)
+      str = link_to "Remove", saved_record_path( save: { user_id: current_user.id,
+                                                     saveable_id: article.id,
+                                                     saveable_type: article.class.to_s } ), method: :delete, class: 'btn btn-secondary btn-sm save-btn'
+    else
+      str = link_to "Save", saved_record_path( save: { user_id: current_user.id,
+                                                   saveable_id: article.id,
+                                                   saveable_type: article.class.to_s } ), method: :post, class: 'btn btn-secondary btn-sm save-btn'
+    end
+  end
+
 
 end
