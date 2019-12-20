@@ -1127,7 +1127,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bullet
   byebug
-  capybara (>= 2.15)
+  capybara (>= 3.15.1)
   coffee-rails (~> 4.2)
   database_cleaner
   delayed_job_active_record
