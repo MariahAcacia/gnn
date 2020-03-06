@@ -1,24 +1,13 @@
 <%= render template: 'shared/navbar' %>
 
-<div class="row justify-content-center home-wrapper">
-  <h2>Welcome to GNN, where all the news is good news!</h2>
-</div>
-
-<hr>
-
-<div class="row justify-content-center">
-  <%= render partial: 'shared/search_all_form' %>
-</div>
-
-<hr>
-
 <div class="article-section">
   <div class="row">
-    <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Text", texts_path, class: 'texts-link' %></h1>
+    <div class="col-sm-7 offset-sm-1">
+      <h1><%= link_to "Read", texts_path, class: 'texts-link' %></h1>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-3 justify-content-right">
       <%= link_to "Add New", new_text_path, class: 'btn btn-secondary add-new-text-btn' if signed_in_admin? %>
+      <%= render partial: 'shared/search_all_form' if !signed_in_admin? %>
     </div>
   </div>
 
@@ -34,7 +23,7 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Video", videos_path, class: 'videos-link' %></h1>
+      <h1><%= link_to "Watch", videos_path, class: 'videos-link' %></h1>
     </div>
     <div class="col-sm-2">
       <%= link_to "Add New", new_video_path, class: 'btn btn-secondary add-new-video-btn' if signed_in_admin? %>
@@ -52,7 +41,7 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Spotlight", spotlights_path, class: 'spotlights-link' %></h1>
+      <h1><%= link_to "Care", spotlights_path, class: 'spotlights-link' %></h1>
     </div>
     <div class="col-sm-2">
       <%= link_to "Add New", new_spotlight_path, class: 'btn btn-secondary add-new-spotlight-btn' if signed_in_admin? %>
@@ -70,7 +59,7 @@
 <div class="article-section">
   <div class="row">
     <div class="col-sm-9 offset-sm-1">
-      <h1><%= link_to "Get Your Good On", givings_path, class: 'gygos-link' %></h1>
+      <h1><%= link_to "Do", givings_path, class: 'gygos-link' %></h1>
     </div>
     <div class="col-sm-2">
       <%= link_to "Add New", new_giving_path, class: 'btn btn-secondary add-new-giving-btn' if signed_in_admin? %>

@@ -12,7 +12,7 @@ feature 'Giving Companies' do
                        click_on(class: 'login-btn')
                        expect(page).to have_content("Welcome Back!")
                        expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-                       expect(page).to have_content("Welcome to GNN, where all the news is good news!")}
+                       expect(page).to have_content("Good News, Everyone!")}
   let(:sign_in_user){ click_link "Login"
                       fill_in "Email", with: "#{user.email}"
                       fill_in "password", with: "password"
@@ -20,7 +20,7 @@ feature 'Giving Companies' do
                       click_on(class: 'login-btn')
                       expect(page).to have_content("Welcome Back!")
                       expect(page).to have_content("#{user.first_name} #{user.last_name}")
-                      expect(page).to have_content("Welcome to GNN, where all the news is good news!")}
+                      expect(page).to have_content("Good News, Everyone!")}
 
   let(:company_name){"New Company"}
   let(:url){"www.companyname.com"}
@@ -39,7 +39,7 @@ feature 'Giving Companies' do
     scenario 'add New company' do
       expect(page).to have_link(class: 'add-new-giving-btn')
       click_link(class: 'add-new-giving-btn')
-      expect(page).to have_content("GNN")
+      expect(page).to have_content("Home")
       expect(page).to have_content("Add New Giving Company")
       fill_in "Company name", with: company_name
       fill_in "Url", with: url
@@ -50,7 +50,7 @@ feature 'Giving Companies' do
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company_name)
       expect(page).to have_content(blurb)
-      click_on("GNN")
+      click_on("Home")
       expect(page).to have_content(company_name)
       expect(page).to have_content(blurb)
     end
@@ -58,7 +58,7 @@ feature 'Giving Companies' do
     scenario 'unable to add new company' do
       expect(page).to have_link(class: 'add-new-giving-btn')
       click_link(class: 'add-new-giving-btn')
-      expect(page).to have_content("GNN")
+      expect(page).to have_content("Home")
       expect(page).to have_content("Add New Giving Company")
       fill_in "Twitter", with: twitter
       expect{ click_on(class: 'create-giving-btn') }.to change(Giving, :count).by(0)
@@ -72,14 +72,13 @@ feature 'Giving Companies' do
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'edit-btn')
       click_link(class: 'edit-btn')
-      expect(page).to have_content("GNN")
+      expect(page).to have_content("Home")
       expect(page).to have_content("Edit Giving Company")
       fill_in "Company name", with: company_name
       click_on "Update Giving"
       expect(page).to have_content("GIVING INDEX")
       expect(page).to have_content(company_name)
-      click_on("GNN")
-      expect(page).to have_content("Welcome to GNN,")
+      click_on("Home")
       expect(page).to have_content(company_name)
     end
 
@@ -169,8 +168,8 @@ feature 'Giving Companies' do
       click_link(class: 'save-btn')
       expect(page).to have_content("Your Saved Giving Links")
       expect(page).not_to have_content(company.company_name)
-      click_on("Home")
-      expect(page).to have_content("Welcome")
+      click_link(class: "home-link")
+      expect(page).to have_content("Watch")
       expect(page).to have_content(company.company_name)
       expect(page).to have_link(class: 'save-btn')
       expect(page).to have_content("Save")
@@ -192,7 +191,7 @@ feature 'Giving Companies' do
     before :each do
       company
       visit root_path
-      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content("Good News, Everyone!")
       expect(page).to have_content(company.company_name)
     end
     scenario 'no option to add new' do

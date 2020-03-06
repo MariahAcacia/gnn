@@ -6,9 +6,9 @@ module ApplicationHelper
     elsif signed_in_user?
       str = render partial: 'shared/logged_in_nav'
     elsif current_page?('/users/new')
-      str = link_to "Cancel", root_path, class: 'nav-link'
+      str = link_to "Cancel", root_path, class: 'cancel-link'
     else
-      str = link_to "Sign Up", new_user_path, class: 'nav-link signup-link'
+      str = link_to "Sign Up", new_user_path, class: 'signup-link'
     end
     str.html_safe
   end
@@ -16,23 +16,22 @@ module ApplicationHelper
   def login_logout_link
     if signed_in_user? || signed_in_admin?
       if @edit_page
-        str = link_to "Cancel", user_path(current_user), class: 'nav-link cancel-link'
-      else
-        str = link_to "Logout", logout_path, class: "logout-link nav-link"
+        str = link_to "Cancel", user_path(current_user), class: 'cancel-link'
       end
     else
-      str = link_to "Login", login_path, class: 'login-link nav-link'
+      str = link_to "| Login", login_path, class: 'login-link'
     end
     str.html_safe
   end
 
   def article_action_links(article)
-    if signed_in_user?
-      str = render partial: 'shared/save_unsave', locals: { article: article } unless current_user.admin == true
+    if signed_in_user? && current_user.admin == false
+      str = render partial: 'shared/save_unsave', locals: { article: article }
     elsif signed_in_admin?
-      str = link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn'
       str = link_to "Delete", polymorphic_path(article), method: "DELETE", class: 'btn btn-secondary btn-sm delete-btn', data: { confirm: "Are you sure you want to delete this article? This action cannot be undone." }
+      str = link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn'
     end
+    
   end
 
   def read_more_about_link(article)

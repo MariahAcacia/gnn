@@ -38,7 +38,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_link(class: 'add-new-spotlight-btn')
         click_on(class: 'add-new-spotlight-btn')
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("GNN")
+        expect(page).to have_content("Home")
         expect(page).to have_content("Add New Spotlight")
         fill_in "Company name", with: company_name
         fill_in "Url", with: url
@@ -48,7 +48,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_content("success! New Spotlight Added Successfully!")
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("GNN")
+        expect(page).to have_content("Home")
         expect(page).to have_content("SPOTLIGHT INDEX")
         expect(page).to have_content(company_name)
         expect(page).to have_content(blurb)
@@ -58,7 +58,7 @@ feature 'Spotlight Articles' do
         expect(page).to have_link(class: 'add-new-spotlight-btn')
         click_on(class: 'add-new-spotlight-btn')
         expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-        expect(page).to have_content("GNN")
+        expect(page).to have_content("Home")
         expect(page).to have_content("Add New Spotlight")
         fill_in "Url", with: url
         fill_in "Blurb", with: blurb
@@ -159,7 +159,7 @@ feature 'Spotlight Articles' do
         find('.save-btn', text: 'Remove')
         click_link(class: 'save-btn')
         expect(page).not_to have_content(spotlight.blurb)
-        click_on("Home")
+        click_link(class: "home-link")
         expect(page).to have_content(spotlight.blurb)
         find('.save-btn', text: 'Save')
         expect(page).not_to have_content("Remove")

@@ -49,7 +49,7 @@ feature 'Saved Records' do
       expect(page).to have_content("Remove")
       expect{ click_link(class: 'save-btn') }.to change(SavedRecord, :count).by(-1)
       expect(page).not_to have_content(@texts.first.blurb)
-      click_on("Home")
+      click_link(class: "home-link")
       expect(page).to have_content(@texts.first.headline)
       expect{ within(class: 'text-area') do
                 find('.save-btn', text: 'Save')

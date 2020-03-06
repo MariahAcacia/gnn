@@ -42,20 +42,26 @@ MULTIPLIER.times do |x|
 end
 
 MULTIPLIER.times do |x|
-  headline = Faker::TvShows::MichaelScott.quote
-  blurb = Faker::TvShows::MichaelScott.quote
+  headline = Faker::TvShows::MichaelScott.quote[0..40]
+  blurb = Faker::TvShows::MichaelScott.quote[0..200]
   url = "https://www.imdb.com/title/tt0386676/"
-  if Text.create(headline: headline, blurb: blurb, url: url)
+  date = Faker::Date.in_date_period
+  source = Faker::Book.publisher
+  if Text.create(headline: headline, blurb: blurb, url: url, published_date: date, source: source)
     puts "Text Created"
+  else
+    puts "NOPE"
   end
 end
 
 
 MULTIPLIER.times do |x|
-  headline = Faker::TvShows::GameOfThrones.quote
-  blurb = Faker::TvShows::GameOfThrones.quote
+  headline = Faker::TvShows::GameOfThrones.quote[0..40]
+  blurb = Faker::TvShows::GameOfThrones.quote[0..200]
   url = "https://www.hbo.com/game-of-thrones"
-  if Video.create(headline: headline, blurb: blurb, url: url)
+  date = Faker::Date.in_date_period
+  source = Faker::Book.publisher
+  if Video.create(headline: headline, blurb: blurb, url: url, published_date: date, source: source)
     puts "Video Created"
   end
 end

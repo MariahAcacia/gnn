@@ -7,7 +7,7 @@
     <% else %>
       <%= article.photo %>
     <% end %>
-    <p><%= article.blurb %></p>
+    <p class="blurb-text"><%= article.blurb %></p>
     <%= render partial: "shared/action_buttons", locals: { article: article } %>
   <% end %>
 </div>

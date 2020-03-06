@@ -11,7 +11,7 @@ feature 'Video Articles' do
                          fill_in "Confirm Password", with: "password"
                          click_on(class: "login-btn")
                          expect(page).to have_content("#{admin.first_name} #{admin.last_name}")
-                         expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+                         expect(page).to have_content("Good News, Everyone!")
                          expect(page).to have_content("success! Welcome Back!")}
     let(:sign_in_user){ click_link "Login"
                         fill_in "Email", with: "#{user.email}"
@@ -19,7 +19,7 @@ feature 'Video Articles' do
                         fill_in "Confirm Password", with: "password"
                         click_on(class: 'login-btn')
                         expect(page).to have_content("#{user.first_name} #{user.last_name}")
-                        expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+                        expect(page).to have_content("Good News, Everyone!")
                         expect(page).to have_content("success! Welcome Back!") }
 
     before do
@@ -47,7 +47,7 @@ feature 'Video Articles' do
         expect(page).to have_content(headline)
         expect(page).to have_content(blurb)
         click_link class: 'home-link'
-        expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+        expect(page).to have_content("Good News, Everyone!")
         expect(page).to have_content(headline)
         expect(page).to have_content(blurb)
       end
@@ -146,7 +146,7 @@ feature 'Video Articles' do
         click_link(class: 'save-btn')
         expect(page).to have_content("Your Saved Video Links")
         expect(page).not_to have_content(@videos.first.headline)
-        click_on("Home")
+        click_link class: 'home-link'
         expect(page).to have_content(@videos.first.headline)
         find('.save-btn', text: "Save")
       end
@@ -154,7 +154,7 @@ feature 'Video Articles' do
 
     context 'Non-users' do
       before :each do
-        expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+        expect(page).to have_content("Good News, Everyone!")
         expect(page).to have_content(@videos.first.headline)
         expect(page).to have_content(@videos.first.blurb)
       end

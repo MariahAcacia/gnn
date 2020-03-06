@@ -102,12 +102,12 @@ feature 'Text Articles' do
     end
 
     scenario 'save and remove a text article' do
-      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content("Good News, Everyone!")
       expect(page).to have_content(user.first_name)
       expect(page).to have_content(text.headline)
       expect(page).to have_link(class: 'save-btn')
       click_link(class: 'save-btn')
-      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content("Good News, Everyone!")
       expect(page).to have_content(text.headline)
       expect(page).to have_link(class: 'save-btn')
       click_link(class: 'saved-text-index')
@@ -119,7 +119,7 @@ feature 'Text Articles' do
       expect(page).to have_content("Your Saved Text Links")
       expect(page).not_to have_content(text.headline)
       expect(page).not_to have_link(class: 'save-btn')
-      click_on("Home")
+      click_link(class: "home-link")
       expect(page).to have_content(text.headline)
       expect(page).to have_content("Save")
       expect(page).to have_link(class: 'save-btn')
@@ -144,7 +144,7 @@ feature 'Text Articles' do
     before :each do
       text
       visit root_path
-      expect(page).to have_content("Welcome to GNN, where all the news is good news!")
+      expect(page).to have_content("Good News, Everyone!")
       expect(page).to have_content(text.headline)
     end
 

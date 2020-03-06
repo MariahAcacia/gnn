@@ -2,10 +2,10 @@
   <%= link_to(article.url, target: :_blank) do %>
     <p class="headline-text"><%= article.company_name unless nil %></p>
     <p class="headline-text"><%= article.name unless nil %></p>
-    <div style="width: 175px; height: 150px; background-color:gray;">
+    <div style="width: 75px; height: 75px; background-color:gray;">
       <%= article.photo unless nil %>
     </div>
-    <p><%= article.blurb %></p>
+    <p class="blurb-text"><%= article.blurb %></p>
     <%= render partial: "shared/action_buttons", locals: { article: article } %>
   <% end %>
 </div>

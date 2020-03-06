@@ -49,8 +49,7 @@ feature 'User Accounts' do
   scenario 'log in as returning user' do
     sign_in
     expect(page).to have_content "#{user.first_name} #{user.last_name}"
-    expect(page).to have_content "Welcome to GNN, where all the news is good news!"
-    expect(page).to have_content "Logout"
+    expect(page).to have_content "Good News, Everyone!"
   end
 
   scenario 'unable to login' do
@@ -60,17 +59,16 @@ feature 'User Accounts' do
     fill_in "Confirm Password", with: "password"
     click_on(class: 'login-btn')
     expect(page).to have_content "error! Invalid User/Password Combination"
-    expect(page).to have_content "Welcome to GNN, where all the news is good news!"
+    expect(page).to have_content "Good News, Everyone!"
     expect(page).to have_content "Sign Up"
     expect(page).to have_content "Login"
   end
 
   scenario 'logout' do
     sign_in
-    expect(page).to have_content "Logout"
     click_on(class: 'logout-link')
     expect(page).to have_content "You've successfully logged out"
-    expect(page).to have_content "Welcome to GNN, where all the news is good news!"
+    expect(page).to have_content "Good News, Everyone!"
     expect(page).to have_content "Sign Up"
     expect(page).to have_content "Login"
   end
@@ -111,7 +109,7 @@ feature 'User Accounts' do
     expect(page).to have_content "#{user.first_name} #{user.last_name}"
     click_link "About"
     expect(page).to have_content "About GNN"
-    click_link "Home"
+    click_link class: "home-link"
     click_link "Contact"
     expect(page).to have_content "Contact Us!"
   end
