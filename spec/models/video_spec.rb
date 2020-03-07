@@ -34,6 +34,18 @@ describe Video do
       vid = build(:video)
       expect(vid).to be_valid
     end
+    it 'is not valid with published_date' do
+      vid = build(:video, published_date: '')
+      expect(vid).not_to be_valid
+    end
+    it 'is not valid with source' do
+      vid = build(:video, source: '')
+      expect(vid).not_to be_valid
+    end
+    it 'is not valid with author' do
+      vid = build(:video, author: '')
+      expect(vid).not_to be_valid
+    end
   end
 
   describe 'Methods' do

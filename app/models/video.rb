@@ -2,7 +2,7 @@ class Video < ApplicationRecord
 
   include Searchable
 
-  validates :headline, :blurb, :url, presence: true
+  validates :headline, :blurb, :url, :source, :published_date, :author, presence: true
   validates :headline, length: { in: 5..40 }
   validates :blurb, length: { in: 5..200 }
 

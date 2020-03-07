@@ -23,14 +23,24 @@ describe Text do
       new_text = build(:text, headline: "")
       expect(new_text).not_to be_valid
     end
-
     it 'is not valid without a url' do
       new_text = build(:text, url: "")
       expect(new_text).not_to be_valid
     end
-
     it 'is not valid without a blurb' do
       new_text = build(:text, blurb: "")
+      expect(new_text).not_to be_valid
+    end
+    it 'is not valid without published date' do
+      new_text = build(:text, published_date: '')
+      expect(new_text).not_to be_valid
+    end
+    it 'is not valid without source' do
+      new_text = build(:text, source: '')
+      expect(new_text).not_to be_valid
+    end
+    it 'is not valid without author' do
+      new_text = build(:text, author: '')
       expect(new_text).not_to be_valid
     end
   end

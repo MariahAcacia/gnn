@@ -33,12 +33,18 @@ feature 'Text Articles' do
     scenario 'add new' do
       headline = Faker::TvShows::RickAndMorty.quote
       blurb = Faker::TvShows::RickAndMorty.quote
+      name = Faker::Name.first_name + " " + Faker::Name.last_name
       expect(page).to have_link(class: 'add-new-text-btn')
       click_on(class: 'add-new-text-btn')
       expect(page).to have_content("Add New Text Article")
       fill_in "Headline", with: headline[0,30]
       fill_in "Blurb", with: blurb[0,200]
       fill_in class:"url", with: "https://www.adultswim.com/videos/rick-and-morty"
+      fill_in "Source", with: "The Times"
+      fill_in "Author", with: name
+      select(2020, from: "text_published_date_1i")
+      select('January', from: "text_published_date_2i")
+      select(20, from: "text_published_date_3i")
       click_button class: 'create-text-btn'
       expect(page).to have_content("Text Article Added Successfully!")
       expect(page).to have_content("TEXT INDEX")

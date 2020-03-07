@@ -60,7 +60,7 @@ class TextsController < ApplicationController
   private
 
   def text_params
-    params.require(:text).permit(:headline, :blurb, :url, :source, :published_date, :photo)
+    params.require(:text).permit(:headline, :blurb, :url, :source, :published_date, :author, :photo)
   end
 
   def set_text

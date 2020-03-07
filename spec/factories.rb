@@ -3,8 +3,8 @@ require 'faker'
 FactoryBot.define do
 
   factory :user do
-    first_name { "#{Faker::Name.first_name}" }
-    last_name { "#{Faker::Name.last_name}" }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
     email { "#{first_name}.#{last_name}@yada.com" }
     password { "password" }
     password_confirmation { "password" }
@@ -14,12 +14,18 @@ FactoryBot.define do
     headline { "#{Faker::TvShows::RickAndMorty.quote}".first(30).strip }
     blurb { "#{Faker::TvShows::RickAndMorty.quote}".first(200).strip }
     url { "https://www.adultswim.com/videos/rick-and-morty" }
+    published_date { Faker::Date.in_date_period }
+    source { Faker::Book.publisher }
+    author { Faker::Name.first_name + " " + Faker::Name.last_name}
   end
 
   factory :video do
     headline { "#{Faker::TvShows::Simpsons.quote}".first(30).strip }
     blurb { "#{Faker::TvShows::Simpsons.quote}".first(200) }
     url { "http://www.simpsonsworld.com/" }
+    published_date { Faker::Date.in_date_period }
+    source { Faker::Book.publisher }
+    author { Faker::Name.first_name + ' ' + Faker::Name.last_name }
   end
 
   factory :spotlight do

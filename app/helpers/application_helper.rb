@@ -29,9 +29,9 @@ module ApplicationHelper
       str = render partial: 'shared/save_unsave', locals: { article: article }
     elsif signed_in_admin?
       str = link_to "Delete", polymorphic_path(article), method: "DELETE", class: 'btn btn-secondary btn-sm delete-btn', data: { confirm: "Are you sure you want to delete this article? This action cannot be undone." }
-      str = link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn'
+      str2 = link_to "Edit", edit_polymorphic_path(article), class: 'btn btn-secondary btn-sm edit-btn'
     end
-    
+    safe_join([str, " ", str2])
   end
 
   def read_more_about_link(article)

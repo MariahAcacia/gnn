@@ -34,6 +34,7 @@ feature 'Video Articles' do
       scenario 'add new' do
         headline = Faker::TvShows::Simpsons.quote[0,30].strip
         blurb = Faker::TvShows::Simpsons.quote
+        name = Faker::Name.first_name + " " + Faker::Name.last_name
         expect(page).to have_content("Video")
         expect(page).to have_link class: 'add-new-video-btn'
         click_on class: 'add-new-video-btn'
@@ -41,6 +42,11 @@ feature 'Video Articles' do
         fill_in "Headline", with: headline
         fill_in "Blurb", with: blurb
         fill_in "Url", with: "www.simpsonsworld.com"
+        fill_in "Source", with: "YouTube"
+        fill_in "Author", with: name
+        select(2020, from: "video_published_date_1i")
+        select('February', from: "video_published_date_2i")
+        select(28, from: "video_published_date_3i")
         expect{ click_button "Create Video" }.to change(Video, :count).by(1)
         expect(page).to have_content("success! Video Article Added Successfully!")
         expect(page).to have_content("VIDEO INDEX")
