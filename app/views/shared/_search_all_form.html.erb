@@ -1,4 +1,4 @@
-<%= form_tag user_search_all_path, method: "get", class: "search-bar" do %>
-  <%= text_field_tag :search_query, nil, placeholder: "Search All Articles" %>
-  <%= submit_tag "Search", class: 'btn btn-secondary' %>
+<%= form_tag user_search_all_path, method: "get", class: "search-bar form-inline my-2 my-lg-0" do %>
+  <%= text_field_tag :search_query, nil, placeholder: "Search All Articles", class: "form-control mr-sm-2" %>
+  <%= submit_tag "Search", class: 'btn btn-secondary my-2 my-sm-0' %>
 <% end %>

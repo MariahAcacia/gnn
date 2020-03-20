@@ -60,7 +60,7 @@ class VideosController < ApplicationController
   private
 
   def video_params
-    params.require(:video).permit(:headline, :blurb, :url, :photo, :source, :published_date, :author)
+    params.require(:video).permit(:headline, :blurb, :url, :photo, :source, :author, :published_date)
   end
 
   def set_video

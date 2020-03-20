@@ -6,9 +6,9 @@ module ApplicationHelper
     elsif signed_in_user?
       str = render partial: 'shared/logged_in_nav'
     elsif current_page?('/users/new')
-      str = link_to "Cancel", root_path, class: 'cancel-link'
+      str = link_to "Cancel", root_path, class: 'cancel-link nav-link'
     else
-      str = link_to "Sign Up", new_user_path, class: 'signup-link'
+      str = link_to "Sign Up", new_user_path, class: 'signup-link nav-link'
     end
     str.html_safe
   end
@@ -16,10 +16,12 @@ module ApplicationHelper
   def login_logout_link
     if signed_in_user? || signed_in_admin?
       if @edit_page
-        str = link_to "Cancel", user_path(current_user), class: 'cancel-link'
+        str = link_to "Cancel", user_path(current_user), class: 'cancel-link nav-link'
       end
+    elsif current_page?('/login')
+      str = link_to "Cancel", root_path, class: 'cancel-link nav-link'
     else
-      str = link_to "| Login", login_path, class: 'login-link'
+      str = link_to "Login", login_path, class: 'login-link nav-link'
     end
     str.html_safe
   end

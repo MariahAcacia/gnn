@@ -78,10 +78,12 @@ feature 'Video Articles' do
         click_link class: 'edit-btn'
         expect(page).to have_content("Edit Video Article")
         fill_in "Headline", with: new_headline
+        fill_in "Author", with: "My Name"
         click_button "Update Video"
         expect(page).to have_content("success! Video Article Updated Successfully!")
         expect(page).to have_content(new_headline)
         expect(page).to have_content("VIDEO INDEX")
+        expect(page).to have_content("My Name")
       end
 
 

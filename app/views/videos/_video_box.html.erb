@@ -1,11 +1,19 @@
 <div class="col-sm-3">
   <%= link_to(article.url, target: :_blank) do %>
-    <p class="headline-text"><strong><%= article.headline %></strong></p>
-    <div style="width: 75px; height: 75px; background-color:gray;">
-      <%= article.photo unless nil %>
+    <div class="row padding-LR-15">
+      <p class="headline-text"><strong><%= article.headline %></strong></p>
     </div>
-    <p><%= article.source %> | <%= article.published_date %> </p>
-    <p class="blurb-text"><%= article.blurb %></p>
-    <%= render partial: "shared/action_buttons", locals: { article: article } %>
+    <div class="row photo-author-block padding-LR-15">
+      <%= image_tag(article.photo.url(:thumb), size: "75x75", class: "col-sm-4 col-3 photo padding-0") unless nil %>
+      <div class="source-block col-sm-7 col">
+        <p><%= article.source %></p>
+        <p><%= "By: " + article.author if article.author %></p>
+        <p><%= article.published_date.strftime("%m/%d/%Y") %> </p>
+      </div>
+    </div>
+    <div class="row padding-LR-15">
+      <p class="blurb-text"><%= article.blurb %></p>
+      <%= render partial: "shared/action_buttons", locals: { article: article } %>
+    </div>
   <% end %>
 </div>

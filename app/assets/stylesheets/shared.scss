@@ -1,33 +1,52 @@
 body {
-  font-family: 'Amatic SC';
+  // font-family: 'Amatic SC';
+  // font-family: 'Italianno', ;
+  // font-family: 'Annie Use Your Telescope', ;
+  // font-family: 'Zeyada', ;
+  font-family: 'Waiting for the Sunrise', ;
+  // font-family: 'The Girl Next Door', ;
+  // font-family: 'Bilbo Swash Caps', ;
+  // font-family: 'Bilbo', ;
+  // font-family: 'Felipa', ;
+  // font-family: 'Kavivanar', ;
 }
 
-
 .headline-text,
-.blurb-text {
-   font-family: 'Raleway';
+.blurb-text,
+.source-block,
+.nav-link,
+.btn-secondary,
+input,
+.form-control-label,
+label,
+.index-wrapper h2 {
+  font-family: 'Raleway';
 }
 
 body a {
   color: black;
 }
 
-.home-wrapper h1 {
+.title-wrapper h1 {
   margin: 0.25em 0.5em;
   font-size: 100px;
 }
 
-// regular navbar styles
-@media (max-width: 576px) {
-  .navbar {
-  }
+// styles for different window styles
+@media (max-width: 768px) {
+
 }
+
 .navbar {
+  height: 3.75rem;
 }
 
 .nav-link {
   color: black;
-  margin: 0 1em;
+}
+
+.nav-item {
+  align-self: center;
 }
 
 .texts-link{
@@ -94,10 +113,11 @@ body a {
   }
 }
 
-.photo-style {
+.photo {
   height: 75px;
   width: 75px;
 }
+
 
 //giving and spotlight show pages
 .description-div {
@@ -163,10 +183,6 @@ body a {
 }
 
 .search-bar {
-  text-align: right;
-  input#search_query {
-    width: 70%;
-  }
   input {
     border-radius: 10px;
   }
@@ -203,6 +219,33 @@ body a {
   margin-top: 1em;
 }
 
+
+// box styles
+.source-block {
+  padding-right: 0;
+  :first-child {
+    margin-top: 0;
+  }
+  p {
+    margin-bottom: 0;
+    margin-top: .5rem;
+
+  }
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.padding-LR-15 {
+  padding: 0 15px;
+}
+
+.photo-author-block {
+  height: 75px;
+  font-size: 10px;
+}
+
 .headline-text {
-  height: 2.5em;
+  height: 2em;
 }

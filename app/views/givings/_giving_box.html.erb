@@ -3,9 +3,9 @@
     <p class="headline-text"><%= article.company_name unless nil %></p>
     <p class="headline-text"><%= article.name unless nil %></p>
     <% if article.photo.blank? %>
-      <img src="<%= asset_path('pink.jpg')%>" class="photo-style"/>
+      <img src="<%= asset_path('pink.jpg')%>" class="photo"/>
     <% else %>
-      <%= article.photo %>
+      <%= image_tag(article.photo.url(:thumb), size: "75x75", class: "photo") %>
     <% end %>
     <p class="blurb-text"><%= article.blurb %></p>
     <%= render partial: "shared/action_buttons", locals: { article: article } %>
